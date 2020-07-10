@@ -1,29 +1,19 @@
 package com.UsuariosManager;
 
+import com.ABB.BinTree;
+import com.JsonManager.CreateJsonUser;
+import com.ListaEnlazada.ListaEnlazada;
+
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.LinkedList;
 
 public class ManejoUsuarios {
-    LinkedList<Usuario> usuarios;
 
+    LinkedList<Usuario> usuarios;
+    CreateJsonUser jsonUser = new CreateJsonUser();
     public ManejoUsuarios() {
         usuarios = new LinkedList<Usuario>();
-
-    }
-
-
-
-    public Usuario getUsuario(String name) {
-
-        for (Usuario i : usuarios) {
-
-            if (i.getNombre().equals(name)) {
-
-                return i;
-            }
-        }
-
-        return null;
 
     }
 
@@ -35,21 +25,23 @@ public class ManejoUsuarios {
         }
         return usuarios;
     }
-
-    public void crearUsuario(Usuario nuevo) {
+    public void crearUsuario(Usuario nuevo) throws NoSuchAlgorithmException{
         Usuario usuario = new Usuario();
         usuario.setNombre(nuevo.getNombre());
         usuario.setEmail(nuevo.getEmail());
-        usuario.setPassword(nuevo.getPassword());
-//        try {
-//            usuario.setPassword(MD5.encriptar(nuevo.getPassword()));
-//        } catch (NoSuchAlgorithmException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
+        usuario.setEdad(nuevo.getEdad());
+        usuario.setPassword(MD5.encriptar(nuevo.getPassword()));
 
+
+        try {
+
+            jsonUser.usuarioJson(usuario);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         this.usuarios.add(usuario);
+
 
 
 

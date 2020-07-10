@@ -1,11 +1,13 @@
 package com.UsuariosManager;
 
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import com.ABB.BinTree;
+import com.JsonManager.CreateJsonUser;
+import com.ListaEnlazada.ListaEnlazada;
+
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.security.NoSuchAlgorithmException;
 import java.util.LinkedList;
 
 @Path("USUARIOS")
@@ -14,6 +16,13 @@ public class RegistroUsuario {
 
     static ManejoUsuarios usuarios = new ManejoUsuarios();
 
+/*    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getUsuario/{nombre}")
+    public Usuario getUsuario(@PathParam("nombre") String nombre){
+        return usuarios.getUser(nombre);
+
+    }*/
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("LISTAUSUARIOS")
@@ -26,7 +35,13 @@ public class RegistroUsuario {
     @Path("NUEVOUSUARIO")
     public Usuario agregarUsuario(Usuario usuario) {
 
-        usuarios.crearUsuario(usuario);
+
+        try {
+            usuarios.crearUsuario(usuario);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
         return usuario;
     }
 }
