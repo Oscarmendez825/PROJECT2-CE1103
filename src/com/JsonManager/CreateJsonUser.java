@@ -1,6 +1,7 @@
 package com.JsonManager;
 
 import com.UsuariosManager.Usuario;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 
@@ -27,10 +28,15 @@ public class CreateJsonUser {
         }
         if(randomAccessFile.length() == 0){
             JSONObject jsonObject = new JSONObject();
+
+
             jsonObject.put("nombre",usuario.getNombre());
             jsonObject.put("password",usuario.getPassword());
             jsonObject.put("email",usuario.getEmail());
             jsonObject.put("edad",usuario.getEdad());
+            jsonObject.put("chef", usuario.getIsChef());
+
+
             randomAccessFile.writeBytes("[" + jsonObject.toString() +"\n"+ "]");
             randomAccessFile.close();
         }else{
@@ -39,6 +45,10 @@ public class CreateJsonUser {
             jsonObject.put("password",usuario.getPassword());
             jsonObject.put("email",usuario.getEmail());
             jsonObject.put("edad",usuario.getEdad());
+            jsonObject.put("chef", usuario.getIsChef());
+            jsonObject.put("seguidos",usuario.getSeguidos());
+            jsonObject.put("seguidores",usuario.getSeguidores());
+            jsonObject.put("recetas",usuario.getListaRecetas());
             randomAccessFile.writeBytes("," + jsonObject.toString() +"\n"+ "]");
             randomAccessFile.close();
         }
