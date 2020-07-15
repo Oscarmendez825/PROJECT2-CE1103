@@ -3,10 +3,14 @@ package com.UsuariosManager;
 
 
 
+import com.JsonManager.CambiarValorJson;
+import com.JsonManager.CreateJsonReceta;
+import com.JsonManager.ReadJsonFile;
 import com.ListaEnlazada.ListaEnlazada;
 import com.RecetasManager.Receta;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 
@@ -49,9 +53,10 @@ public class RegistroUsuario {
 
     @POST
     @Path("agregarReceta")
-    public Receta agregarReceta(Receta receta){
+    @Produces(MediaType.TEXT_PLAIN)
+    public String agregarReceta(Receta receta){
 
-        return receta;
+        return usuarios.agregarReceta(receta);
 
     }
 
@@ -132,6 +137,14 @@ public class RegistroUsuario {
 
 
     }
+    @GET
+    @Path("imprimir")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String imprimir(){
+        ReadJsonFile.leerJson();
+        CambiarValorJson.cambiarPassword("Saul","1234");
+        return "jiji";
 
+    }
 
 }

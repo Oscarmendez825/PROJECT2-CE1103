@@ -35,6 +35,19 @@ public class CreateJsonUser {
             jsonObject.put("email",usuario.getEmail());
             jsonObject.put("edad",usuario.getEdad());
             jsonObject.put("chef", usuario.getIsChef());
+            JSONArray seguidos = new JSONArray();
+            JSONArray seguidores = new JSONArray();
+            for (int i = 0; i<usuario.getSeguidores().getSize();i++){
+                seguidores.add(usuario.getSeguidores().get(i));
+
+            }
+            for (int i = 0; i<usuario.getSeguidos().getSize();i++){
+                seguidores.add(usuario.getSeguidos().get(i));
+
+            }
+            jsonObject.put("seguidores",seguidores);
+            jsonObject.put("seguidos",seguidos);
+
 
 
             randomAccessFile.writeBytes("[" + jsonObject.toString() +"\n"+ "]");
@@ -48,7 +61,19 @@ public class CreateJsonUser {
             jsonObject.put("chef", usuario.getIsChef());
             jsonObject.put("seguidos",usuario.getSeguidos());
             jsonObject.put("seguidores",usuario.getSeguidores());
-            jsonObject.put("recetas",usuario.getListaRecetas());
+
+            JSONArray seguidos = new JSONArray();
+            JSONArray seguidores = new JSONArray();
+            for (int i = 0; i<usuario.getSeguidores().getSize();i++){
+                seguidores.add(usuario.getSeguidores().get(i));
+
+            }
+            for (int i = 0; i<usuario.getSeguidos().getSize();i++){
+                seguidores.add(usuario.getSeguidos().get(i));
+
+            }
+            jsonObject.put("seguidores",seguidores);
+            jsonObject.put("seguidos",seguidos);
             randomAccessFile.writeBytes("," + jsonObject.toString() +"\n"+ "]");
             randomAccessFile.close();
         }

@@ -1,6 +1,9 @@
 package com.UsuariosManager;
 import com.BST.BinaryTree;
+import com.JsonManager.CreateJsonReceta;
 import com.JsonManager.CreateJsonUser;
+import com.RecetasManager.Receta;
+
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
@@ -64,5 +67,18 @@ public class ManejoUsuarios {
 
     public BinaryTree getUsuarios() {
         return usuarios;
+    }
+
+    public String agregarReceta(Receta receta) throws IOException {
+        if (usuarios.getbyName(receta.getAutor()).getRecetas().contains(receta.getName())==true){
+            return "ERROR";
+
+        }else{
+            CreateJsonReceta r = new CreateJsonReceta();
+            r.recetaJson(receta);
+            usuarios.getbyName(receta.getAutor()).getRecetas().insert(receta);
+            return "Agregada";
+        }
+
     }
 }

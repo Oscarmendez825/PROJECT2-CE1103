@@ -1,5 +1,6 @@
 package com.JsonManager;
 
+import com.google.gson.annotations.JsonAdapter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -22,13 +23,22 @@ public class ReadJsonFile {
                 System.out.println("nombre : " + name);
                 String password = (String) obj.get("password");
                 System.out.println("password : " + password);
-                long el = (Long) obj.get("E_LEVEL");
-                System.out.println("Emergency Level : " + el);
-                long depth = (Long) obj.get("DEPTH");
-                System.out.println("Depth : " + depth);
-                long i = (Long) obj.get("INTENSITY");
-                System.out.println("Intensity :"+i);
-                System.out.println("\n");
+                long edad = (long) obj.get("edad");
+                System.out.println("edad: " + edad);
+                Boolean chef = (Boolean) obj.get("chef");
+                System.out.println("chef : " + chef);
+                String email = (String) obj.get("email");
+                System.out.println("email :"+email);
+                JSONArray seguidos = (JSONArray) obj.get("seguidos");
+                for(Object i : seguidos){
+                    JSONObject jsonObject = (JSONObject) i;
+                    String name2 = (String) jsonObject.get("nombre");
+                    System.out.println("nombre : " + name2);
+                    String email2 = (String) jsonObject.get("email");
+                    System.out.println("email :"+email2);
+
+                }
+                System.out.println("/n");
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

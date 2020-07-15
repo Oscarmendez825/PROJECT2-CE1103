@@ -1,5 +1,6 @@
 package com.UsuariosManager;
 
+import com.AVL.AVLTree;
 import com.ListaEnlazada.ListaEnlazada;
 import com.RecetasManager.Receta;
 
@@ -15,7 +16,7 @@ public class Usuario{
     ListaEnlazada<GenericUser> seguidos = new ListaEnlazada<GenericUser>();
     ListaEnlazada<GenericUser> seguidores = new ListaEnlazada<GenericUser>();
     private boolean isChef = false;
-
+    AVLTree recetas = new AVLTree();
 
     public Usuario() {
         this.nombre = nombre;
@@ -89,5 +90,9 @@ public class Usuario{
 
     public void setIsChef(boolean chef) {
         isChef = chef;
+    }
+
+    public AVLTree getRecetas() {
+        return recetas;
     }
 }

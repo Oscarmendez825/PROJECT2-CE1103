@@ -20,7 +20,21 @@ public class AVLTree {
 
         }
     }
+    public boolean contains(String item){
+        return contains(root, item);
 
+    }
+    public boolean contains(NodoAVL root,String item){
+        if(root==null) {
+            return false;
+        } else if(item.compareTo(root.getItem().getName())<0) {
+            return contains(root.getLeftChild(),item);
+        } else if(item.compareTo(root.getItem().getName())>0) {
+            return contains(root.getRightChild(),item);
+        } else {
+            return true;
+        }
+    }
     public Receta search(String item) {
         return search(root,item);
     }
@@ -38,6 +52,7 @@ public class AVLTree {
     }
 
     public void delete(Receta item) {
+
         delete(root, item);
     }
 
