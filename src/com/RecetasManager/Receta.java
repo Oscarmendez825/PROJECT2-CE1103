@@ -11,7 +11,9 @@ public class Receta {
     private String[] dieta;
     private String[] ingredientes;
     private String[] pasos;
-
+    private int calificacion = 0;
+    private int dia;
+    private int mes;
     public String getName() {
         return name;
     }
@@ -90,5 +92,29 @@ public class Receta {
 
     public void setPasos(String[] pasos) {
         this.pasos = pasos;
+    }
+
+    public int getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
     }
 }

@@ -2,9 +2,7 @@ package com.UsuariosManager;
 
 import com.AVL.AVLTree;
 import com.ListaEnlazada.ListaEnlazada;
-import com.RecetasManager.Receta;
 
-import java.util.LinkedList;
 
 public class Usuario{
 
@@ -12,9 +10,11 @@ public class Usuario{
     private String password = "";
     private String email = "";
     private int edad = 0;
-    ListaEnlazada<Receta> listaRecetas = new ListaEnlazada<Receta>();
-    ListaEnlazada<GenericUser> seguidos = new ListaEnlazada<GenericUser>();
-    ListaEnlazada<GenericUser> seguidores = new ListaEnlazada<GenericUser>();
+    MyMenu myMenu = new MyMenu();
+    NewsFeed newsFeed = new NewsFeed();
+    ListaEnlazada<String> seguidos = new ListaEnlazada<String>();
+    ListaEnlazada<String> seguidores = new ListaEnlazada<String>();
+    ListaEnlazada<String> empresa = new ListaEnlazada<String>();
     private boolean isChef = false;
     AVLTree recetas = new AVLTree();
 
@@ -24,30 +24,25 @@ public class Usuario{
         this.email = email;
         this.edad = edad;
 
-
-
     }
 
-    public ListaEnlazada<Receta> getListaRecetas() {
-
-        return listaRecetas;
+    public MyMenu getMyMenu() {
+        return myMenu;
     }
 
-    public ListaEnlazada<GenericUser> getSeguidos() {
+    public ListaEnlazada<String> getSeguidos() {
 
         return seguidos;
     }
 
-    public ListaEnlazada<GenericUser> getSeguidores() {
+    public ListaEnlazada<String> getSeguidores() {
 
         return seguidores;
     }
 
-    public void agregarReceta(Receta receta){
-        this.listaRecetas.add(receta);
-
+    public ListaEnlazada<String> getEmpresa() {
+        return empresa;
     }
-
 
     public String getNombre() {
 
@@ -95,4 +90,9 @@ public class Usuario{
     public AVLTree getRecetas() {
         return recetas;
     }
+
+    public NewsFeed getNewsFeed() {
+        return newsFeed;
+    }
+
 }

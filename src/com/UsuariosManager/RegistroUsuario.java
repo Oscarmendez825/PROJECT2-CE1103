@@ -3,11 +3,14 @@ package com.UsuariosManager;
 
 
 
+import com.EmpresasManager.Empresa;
 import com.JsonManager.CambiarValorJson;
 import com.JsonManager.CreateJsonReceta;
 import com.JsonManager.ReadJsonFile;
 import com.ListaEnlazada.ListaEnlazada;
 import com.RecetasManager.Receta;
+import org.json.simple.JSONArray;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
@@ -18,7 +21,7 @@ import java.security.NoSuchAlgorithmException;
 public class RegistroUsuario {
 
 
-    static ManejoUsuarios usuarios = new ManejoUsuarios();
+    public static ManejoUsuarios usuarios = new ManejoUsuarios();
 
 
 
@@ -40,23 +43,35 @@ public class RegistroUsuario {
         GenericUser temp = new GenericUser();
         temp.setNombre(usuarios.getUser(nombre).getNombre());
         temp.setCorreo(usuarios.getUser(nombre).getEmail());
-        for( int i = 0; i < usuarios.getUser(nombre).getSeguidos().getSize(); i++){
-            temp.seguidos.add(usuarios.getUser(nombre).getSeguidos().get(i));
+        for (int i = 0; i < usuarios.getUser(nombre).getSeguidos().getSize(); i++ ){
+            temp.getSeguidos().add(usuarios.getUser(nombre).getSeguidos().get(i));
+
         }
-        for( int i = 0; i < usuarios.getUser(nombre).getSeguidores().getSize(); i++){
-            temp.seguidores.add(usuarios.getUser(nombre).getSeguidores().get(i));
+        for (int i = 0; i < usuarios.getUser(nombre).getSeguidores().getSize(); i++ ){
+            temp.getSeguidores().add(usuarios.getUser(nombre).getSeguidores().get(i));
+
         }
         return temp;
+    }
+    @GET
+    @Path("newsFeed/{nombre}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JSONArray getNewsFeed(@PathParam("nombre") String nombre){
+        return usuarios.getNewsFeed(nombre);
 
     }
-
 
     @POST
     @Path("agregarReceta")
     @Produces(MediaType.TEXT_PLAIN)
     public String agregarReceta(Receta receta){
 
-        return usuarios.agregarReceta(receta);
+        try {
+            return usuarios.agregarReceta(receta);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
 
     }
 
@@ -87,34 +102,21 @@ public class RegistroUsuario {
     @Produces(MediaType.TEXT_PLAIN)
     public String seguir(Usuario usuario,@PathParam("nombre") String nombre ){
 
-        //AGREGAR SEGUIDOR
-        GenericUser temp2 = new GenericUser();
-        GenericUser temp = new GenericUser();
-        //TEMP1
-        temp.setNombre(usuarios.getUser(nombre).getNombre());
-        temp.setCorreo(usuarios.getUser(nombre).getEmail());
-        for( int i = 0; i < usuarios.getUser(nombre).getSeguidos().getSize(); i++){
-            temp.seguidos.add(usuarios.getUser(nombre).getSeguidos().get(i));
-        }
-        for( int i = 0; i < usuarios.getUser(nombre).getSeguidores().getSize(); i++){
-            temp.seguidores.add(usuarios.getUser(nombre).getSeguidores().get(i));
-        }
-        //TEMP2
-        temp2.setNombre(usuarios.getUser(usuario.getNombre()).getNombre());
-        temp2.setCorreo(usuarios.getUser(usuario.getNombre()).getEmail());
-        for( int i = 0; i < usuarios.getUser(usuario.getNombre()).getSeguidos().getSize(); i++){
-            temp2.seguidos.add(usuarios.getUser(nombre).getSeguidos().get(i));
-        }
-        for( int i = 0; i < usuarios.getUser(nombre).getSeguidores().getSize(); i++){
-            temp2.seguidores.add(usuarios.getUser(nombre).getSeguidores().get(i));
+        if (usuarios.getUsuarios().contains(nombre) == true&&usuarios.getUsuarios().contains(usuario.getNombre()) == true){
+            if(usuarios.getUsuarios().getbyName(nombre).getSeguidores().search(usuario.getNombre())==true){
+                return "ERROR";
+
+            }else{
+                usuarios.getUsuarios().getbyName(nombre).getSeguidores().add(usuario.getNombre());
+                usuarios.getUsuarios().getbyName(usuario.getNombre()).getSeguidos().add(nombre);
+                CambiarValorJson.agregarSeguidor(nombre,usuario.getNombre());
+                return "Seguido";
+            }
+
+        }else{
+            return "ERROR";
         }
 
-        usuarios.getUser(nombre).getSeguidores().add(temp2);
-        usuarios.getUser(usuario.getNombre()).getSeguidos().add(temp);
-
-
-
-        return "Seguido";
     }
     @POST
     @Path("CambioContraseña")
@@ -123,6 +125,7 @@ public class RegistroUsuario {
         if (seguridad.getCorreo().equals(usuarios.getUser(seguridad.getNombre()).getEmail())){
             if(MD5.encriptar(seguridad.getContraseñaVieja()).equals(usuarios.getUser(seguridad.getNombre()).getPassword())){
                 usuarios.getUser(seguridad.getNombre()).setPassword(MD5.encriptar(seguridad.getNuevaContraseña()));
+                CambiarValorJson.cambiarPassword(seguridad.getNombre(),MD5.encriptar(seguridad.getNuevaContraseña()));
                 return "Cambiada";
             }else{
                 return "Incorrecto";
@@ -142,9 +145,24 @@ public class RegistroUsuario {
     @Produces(MediaType.TEXT_PLAIN)
     public String imprimir(){
         ReadJsonFile.leerJson();
-        CambiarValorJson.cambiarPassword("Saul","1234");
+
         return "jiji";
 
     }
 
+
+
+    @POST
+    @Path("newEmpresa/{name}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String crearEmpresa(Empresa empresa,@PathParam("name") String name){
+        return usuarios.agregarEmpresa(empresa,name);
+
+    }
+    @POST
+    @Path("cargarDatos")
+    public void cargarDatos(){
+        usuarios.cargarUsuarios();
+        usuarios.cargarRecetas();
+    }
 }

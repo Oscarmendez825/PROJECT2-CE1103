@@ -1,21 +1,22 @@
 package com.EmpresasManager;
 
+import com.ListaEnlazada.ListaEnlazada;
 import com.UsuariosManager.Usuario;
 
-import java.util.LinkedList;
+
 
 public class Empresa {
 
-    private String nombre;
-    private String contacto;
-    private String horario;
-    private LinkedList<Usuario> listaSeguidores;
+    private String nombre = "";
+    private String contacto = "";
+    private String horario = "";
+    private ListaEnlazada<String> seguidores;
 
     public void addSeguidor(Usuario usuario){
-        listaSeguidores.add(usuario);
+        seguidores.add(usuario.getNombre());
     }
-    public LinkedList<Usuario> getListaSeguidores(){
-        return listaSeguidores;
+    public ListaEnlazada<String> getSeguidores(){
+        return seguidores;
 
     }
 

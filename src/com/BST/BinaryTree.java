@@ -134,7 +134,35 @@ public class BinaryTree {
 		}
 	}
 
+    public boolean contains(String data)
+    {
 
+        return contains(root, data);
+    }
+
+    // Traverses the tree to determine if a given value in contained within it.
+    private boolean contains(Node root, String data)
+    {
+        // Checks for empty tree.
+        if (root == null)
+        {
+            return false;
+        }
+        // Recursively moving left or right down the tree.
+        else if (data.compareTo(root.getData().getNombre()) < 0)
+        {
+            return contains(root.getLeft(), data);
+        }
+        else if (data.compareTo(root.getData().getNombre()) > 0)
+        {
+            return contains(root.getRight(), data);
+        }
+        // Returns true when it finds the value.
+        else
+        {
+            return true;
+        }
+    }
 	public Usuario getbyEmail(String email){
 		return getbyEmail(root,email);
 

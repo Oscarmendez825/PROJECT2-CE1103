@@ -58,6 +58,9 @@ public class CreateJsonReceta {
             jsonObject.put("dieta",dieta);
             jsonObject.put("ingredientes",ingredientes);
             jsonObject.put("pasos",pasos);
+            jsonObject.put("calificacion",receta.getCalificacion());
+            jsonObject.put("mes",receta.getMes());
+            jsonObject.put("dia",receta.getDia());
 
             randomAccessFile.writeBytes("[" + jsonObject.toString() +"\n"+ "]");
             randomAccessFile.close();
@@ -89,6 +92,9 @@ public class CreateJsonReceta {
             jsonObject.put("dieta",dieta);
             jsonObject.put("ingredientes",ingredientes);
             jsonObject.put("pasos",pasos);
+            jsonObject.put("calificacion",receta.getCalificacion());
+            jsonObject.put("mes",receta.getMes());
+            jsonObject.put("dia",receta.getDia());
             randomAccessFile.writeBytes("," + jsonObject.toString() +"\n"+ "]");
             randomAccessFile.close();
         }
