@@ -33,7 +33,6 @@ public class RegistroUsuario {
             return "AGREGADO";
 
         }
-
     }
 
     @GET
@@ -164,5 +163,29 @@ public class RegistroUsuario {
     public void cargarDatos(){
         usuarios.cargarUsuarios();
         usuarios.cargarRecetas();
+        usuarios.cargarEmpresas();
+    }
+
+    @POST
+    @Path("seguirEmpresa/{nombreEmpresa}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String seguirEmpresa(Usuario usuario,@PathParam("nombreEmpresa") String nombreEmpresa ){
+
+        if (usuarios.getEmpresas().contains(nombreEmpresa) == true&&usuarios.getUsuarios().contains(usuario.getNombre()) == true){
+            if(usuarios.getEmpresas().find(nombreEmpresa).getSeguidores().search(usuario.getNombre())==true){
+                return "ERROR";
+
+            }else{
+                usuarios.getEmpresas().find(nombreEmpresa).getSeguidores().add(usuario.getNombre());
+                usuarios.getUsuarios().getbyName(usuario.getNombre()).getSeguidos().add(nombreEmpresa);
+                CambiarValorJson.agregarSeguidor(nombreEmpresa,usuario.getNombre());
+                CambiarValorJson.seguidorEmpresa(usuario.getNombre(),nombreEmpresa);
+                return "Seguido";
+            }
+
+        }else{
+            return "ERROR";
+        }
+
     }
 }

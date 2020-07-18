@@ -1,6 +1,7 @@
 package com.UsuariosManager;
 import com.BST.BinaryTree;
 import com.EmpresasManager.Empresa;
+import com.JsonManager.CambiarValorJson;
 import com.JsonManager.CreateJsonEmpresa;
 import com.JsonManager.CreateJsonUser;
 import com.ListaEnlazada.ListaEnlazada;
@@ -115,6 +116,7 @@ public class ManejoUsuarios {
             empresas.insert(empresa);
             usuarios.getbyName(name).getEmpresa().add(empresa.getNombre());
             CreateJsonEmpresa e = new CreateJsonEmpresa();
+            CambiarValorJson.agregarEmpresa(name,empresa.getNombre());
             try {
                 e.empresaJson(empresa);
             } catch (IOException ioException) {
@@ -305,5 +307,45 @@ public class ManejoUsuarios {
             e.printStackTrace();
         }
 
+    }
+    public void cargarEmpresas(){
+        JSONParser parser = new JSONParser();
+        try {
+            JSONArray a = (JSONArray) parser.parse(new FileReader("C:\\Users\\Oscar\\IdeaProjects\\Project2CE1103\\JSONEmpresas.json"));
+            for (Object o : a)
+            {
+                Empresa empresa = new Empresa();
+                JSONObject obj = (JSONObject) o;
+                String name = (String) obj.get("nombre");
+                empresa.setNombre(name);
+                System.out.println("nombre : " + name);
+                String contacto = (String) obj.get("contacto");
+                empresa.setContacto(contacto);
+                System.out.println("contacto : " + contacto);
+                String horario = (String) obj.get("horario");
+                empresa.setHorario(horario);
+                System.out.println("horario :"+horario);
+
+                JSONArray seguidores = (JSONArray) obj.get("seguidores");
+                for(Object i : seguidores){
+                    //JSONObject jsonObject = (JSONObject) i;
+                    empresa.getSeguidores().add(i.toString());
+
+                }
+                System.out.println("/n");
+                empresas.insert(empresa);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public SplayTree getEmpresas() {
+        return empresas;
     }
 }

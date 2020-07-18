@@ -48,7 +48,5 @@ public class Stack {
             return this.stackList.isEmpty();
         }
 
-    public void setStackList(ListaEnlazada<Receta> stackList) {
-        this.stackList = stackList;
-    }
+
 }

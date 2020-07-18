@@ -30,7 +30,7 @@ public class CreateJsonEmpresa {
             jsonObject.put("contacto",empresa.getContacto());
             jsonObject.put("horario",empresa.getHorario());
 
-            JSONArray seguidos = new JSONArray();
+
             JSONArray seguidores = new JSONArray();
             for (int i = 0; i<empresa.getSeguidores().getSize();i++){
                 seguidores.add(empresa.getSeguidores().get(i));
@@ -50,7 +50,7 @@ public class CreateJsonEmpresa {
             jsonObject.put("contacto",empresa.getContacto());
             jsonObject.put("horario",empresa.getHorario());
 
-            JSONArray seguidos = new JSONArray();
+
             JSONArray seguidores = new JSONArray();
             for (int i = 0; i<empresa.getSeguidores().getSize();i++){
                 seguidores.add(empresa.getSeguidores().get(i));

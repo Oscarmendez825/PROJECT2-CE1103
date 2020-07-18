@@ -143,7 +143,7 @@ public class AVLTree {
         }
     }
 
-    public void insert(NodoAVL root,Receta item) {
+    private void insert(NodoAVL root,Receta item) {
         if(item.getName().compareTo(root.getItem().getName())<0) {
             if(root.getLeftChild()==null) {
                 NodoAVL node = new NodoAVL();
