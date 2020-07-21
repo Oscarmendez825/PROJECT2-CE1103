@@ -8,12 +8,23 @@ import org.json.simple.JSONObject;
 
 import java.io.*;
 
+/***
+ * User creator in Json files.
+ * @author Oscar Méndez
+ * @author Keyner Gómez
+ * @author Hansel Hampton
+ * @version 1.1
+ * @since 2020
+ */
 public class CreateJsonUser {
 
 
     String direccion = "C:\\Users\\Oscar\\IdeaProjects\\Project2CE1103\\JSONuser.json";
 
-
+    /***
+     * This method adds a new user to the respective Json file.
+     * @param usuario String
+     */
     public void usuarioJson(Usuario usuario) throws IOException {
         RandomAccessFile randomAccessFile = new RandomAccessFile(direccion, "rw");
         long pos = randomAccessFile.length();

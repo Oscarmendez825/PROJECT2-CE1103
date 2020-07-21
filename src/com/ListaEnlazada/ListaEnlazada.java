@@ -1,19 +1,38 @@
 package com.ListaEnlazada;
 
+/***
+ * Linked list class; used for the MyMenu of each user.
+ * @author Oscar Méndez
+ * @author Keyner Gómez
+ * @author Hansel Hampton
+ * @version 1.1
+ * @since 2020
+ */
 public class ListaEnlazada <Type>{
     private Nodo first;
     private Nodo last;
     private int size = 0;
 
+    /***
+     * Constructor of the 'ListaEnlazada' class.
+     */
     public ListaEnlazada(){
         this.first = null;
         this.last = null;
     }
 
+    /***
+     * This method verifies if the list is empty.
+     * @return Boolean
+     */
     public boolean isEmpty() {
         return this.first == null;
     }
 
+    /***
+     * This method adds a new item to the list.
+     * @param data Type
+     */
     public void add(Type data) {
         Nodo<Type> nuevo = new Nodo<Type>();
         nuevo.setData(data);
@@ -30,6 +49,11 @@ public class ListaEnlazada <Type>{
         size++;
     }
 
+    /***
+     * This method verifies if a item is in the list.
+     * @param data Type
+     * @return Boolean
+     */
     public boolean search(Type data){
         Nodo nodo;
         nodo = first;
@@ -44,6 +68,10 @@ public class ListaEnlazada <Type>{
         return false;
     }
 
+    /***
+     * This method removes a whole section from the list, from a certain position to the tail of the list.
+     * @param pos Integer
+     */
     public void cut(int pos){
         int cont = 0;
         Nodo aux = first;
@@ -57,6 +85,9 @@ public class ListaEnlazada <Type>{
 
     }
 
+    /***
+     * This method prints all the items in the list.
+     */
     public void show(){
         Nodo c = this.first;
         while(c != null){
@@ -66,6 +97,11 @@ public class ListaEnlazada <Type>{
 
     }
 
+    /***
+     * This method modifies the content of a certain position in the list.
+     * @param pos Integer
+     * @param data Type
+     */
     public void modify(int pos, Type data){
         if (isEmpty()){
             System.out.println("Error su lista está vacía");
@@ -97,6 +133,10 @@ public class ListaEnlazada <Type>{
 
     }
 
+    /***
+     * This method deletes an item from the list.
+     * @param pos Integer
+     */
     public void remove(int pos) {
         Nodo temp = first;
         Nodo aux = null;
@@ -132,6 +172,12 @@ public class ListaEnlazada <Type>{
         size--;
 
     }
+
+    /***
+     * This method deletes all the elements with a common content from the list.
+     * @param data Type
+     * @return Nodo
+     */
     public Nodo removeByValue(Type data){
         Nodo temp = this.first;
         Nodo previous = this.first;
@@ -154,6 +200,12 @@ public class ListaEnlazada <Type>{
         }
         return null;
     }
+
+    /***
+     * This method returns the content of a certain position in the list.
+     * @param pos Integer
+     * @return Type
+     */
     public Type get(int pos) {
         int cont = 0;
         Nodo temp = first;
@@ -164,20 +216,34 @@ public class ListaEnlazada <Type>{
         return (Type) temp.getData();
     }
 
-
-
+    /***
+     * This method returns the content of the first node of the list.
+     * @return Type
+     */
     public Type getCabeza() {
         return (Type) first.getData();
     }
 
+    /***
+     * This method returns the content of the last node of the list.
+     * @return Type
+     */
     public Type getCola() {
         return (Type) last.getData();
     }
 
+    /***
+     * This method returns the size of the list.
+     * @return Integer
+     */
     public int getSize() {
         return size;
     }
 
+    /***
+     * This method adds a new node at the head of the list.
+     * @param data Type
+     */
     public void addCabeza(Type data){
         Nodo <Type> nuevo = new Nodo<Type>(data);
         if(isEmpty()){
@@ -189,6 +255,11 @@ public class ListaEnlazada <Type>{
         }
 
     }
+
+    /***
+     * This method removes the first node of the list.
+     * @return Nodo
+     */
     public Nodo removeFirst(){
         if (this.first != null) {
             Nodo temp = this.first;

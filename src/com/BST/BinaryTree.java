@@ -3,10 +3,21 @@ package com.BST;
 
 import com.UsuariosManager.Usuario;
 
+/***
+ * Binary search tree class; stores the info of each user.
+ * @author Oscar Méndez
+ * @author Keyner Gómez
+ * @author Hansel Hampton
+ * @version 1.1
+ * @since 2020
+ */
 public class BinaryTree {
 	private Node root;
 
-
+	/***
+	 * This method verifies if the tree is empty
+	 * @return Boolean
+	 */
 	public boolean isEmpty(){
 		if (root == null){
 			return true;
@@ -14,13 +25,23 @@ public class BinaryTree {
 			return false;
 		}
 	}
+
+	/***
+	 * Facade method of the true 'insert' method.
+	 * @param data Usuario
+	 */
 	public void insert(Usuario data)
 	{
 
 		root = insert(root, data);
 	}
 
-
+	/***
+	 * This method inserts a new user in the tree.
+	 * @param root Node
+	 * @param data Usuario
+	 * @return Node
+	 */
 	private Node insert(Node root, Usuario data)
 	{
 
@@ -28,7 +49,6 @@ public class BinaryTree {
 		{
 			return new Node(data);
 		}
-		// Determine whether to go left or right down the BST.
 		else if (data.getNombre().compareTo(root.getData().getNombre()) < 0){
 			root.setLeft(insert(root.getLeft(), data));
 		}
@@ -45,22 +65,28 @@ public class BinaryTree {
 		return root;
 	}
 
-	// Helper method for deletion.
+	/***
+	 * Facade method of the true 'delete' method.
+	 * @param data Usuario
+	 */
 	public void delete(Usuario data)
 	{
 
 		root = delete(root, data);
 	}
 
-	// Finds a given node, and deletes it.
+	/***
+	 * This method finds and deletes a certain item of the tree
+	 * @param root Node
+	 * @param data Usuario
+	 * @return Node
+	 */
 	private Node delete(Node root, Usuario data)
 	{
-		// Checks for empty tree.
 		if (root == null)
 		{
 			return null;
 		}
-		// Recursively traverse the tree down to find the node to be deleted.
 		else if (data.getNombre().compareTo(root.getData().getNombre()) < 0)
 		{
 			root.setLeft(delete(root.getLeft(), data));
@@ -71,23 +97,18 @@ public class BinaryTree {
 		}
 		else
 		{
-			// When we hit the bottom of the tree.
 			if (root.getLeft() == null && root.getRight() == null)
 			{
 				return null;
 			}
-			// If we can only go left.
 			else if (root.getRight() == null)
 			{
 				return root.getLeft();
 			}
-			// If we can only go right.
 			else if (root.getLeft() == null)
 			{
 				return root.getRight();
 			}
-			// If the root is deleted, this finds the biggest value in the left
-			// subtree and puts in in the root.
 			else
 			{
 				root.setData(findMax(root.getLeft()));
@@ -98,8 +119,11 @@ public class BinaryTree {
 		return root;
 	}
 
-	// This method assumes root is non-null, since this is only called by
-	// delete() on the left subtree, and only when that subtree is non-empty.
+	/***
+	 * This method finds the furthest-to-the-right node on the given tree, or subtree in a certain cqse.
+	 * @param root Node
+	 * @return Usuario
+	 */
 	private Usuario findMax(Node root)
 	{
 		while (root.getRight() != null)
@@ -110,22 +134,29 @@ public class BinaryTree {
 		return root.getData();
 	}
 
-	// Returns true if the value is contained in the BST.
+	/***
+	 * Facade method of the true 'contains' method.
+	 * @param data Usuario
+	 * @return Boolean
+	 */
 	public boolean contains(Usuario data)
 	{
 
 		return contains(root, data);
 	}
 
-	// Traverses the tree to determine if a given value in contained within it.
+	/***
+	 * This method verifies if a certain user is in the tree.
+	 * @param root Node
+	 * @param data Usuario
+	 * @return Boolean
+	 */
 	private boolean contains(Node root, Usuario data)
 	{
-		// Checks for empty tree.
 		if (root == null)
 		{
 			return false;
 		}
-		// Recursively moving left or right down the tree.
 		else if (data.getEmail().compareTo(root.getData().getEmail()) < 0)
 		{
 			return contains(root.getLeft(), data);
@@ -134,28 +165,28 @@ public class BinaryTree {
 		{
 			return contains(root.getRight(), data);
 		}
-		// Returns true when it finds the value.
 		else
 		{
 			return true;
 		}
 	}
 
+	/***
+	 * Facade method of the true 'contains' method.
+	 * @param data String
+	 * @return Boolean
+	 */
     public boolean contains(String data)
     {
 
         return contains(root, data);
     }
-
-    // Traverses the tree to determine if a given value in contained within it.
     private boolean contains(Node root, String data)
     {
-        // Checks for empty tree.
         if (root == null)
         {
             return false;
         }
-        // Recursively moving left or right down the tree.
         else if (data.compareTo(root.getData().getNombre()) < 0)
         {
             return contains(root.getLeft(), data);
@@ -164,23 +195,33 @@ public class BinaryTree {
         {
             return contains(root.getRight(), data);
         }
-        // Returns true when it finds the value.
         else
         {
             return true;
         }
     }
+
+	/***
+	 * Facade method of the true 'getbyEmail' method.
+	 * @param email String
+	 * @return Usuario
+	 */
 	public Usuario getbyEmail(String email){
 		return getbyEmail(root,email);
 
 	}
 
+	/***
+	 * This method finds an user by its 'email' atribute.
+	 * @param root Node
+	 * @param email String
+	 * @return Usuario
+	 */
 	private Usuario getbyEmail(Node root,String email){
 		if (root == null)
 		{
 			return null;
 		}
-		// Recursively moving left or right down the tree.
 		else if (email.compareTo(root.getData().getEmail()) < 0)
 		{
 			return getbyName(root.getLeft(), email);
@@ -189,7 +230,6 @@ public class BinaryTree {
 		{
 			return getbyName(root.getRight(), email);
 		}
-		// Returns true when it finds the value.
 		else
 		{
 			return root.getData();
@@ -197,18 +237,27 @@ public class BinaryTree {
 
 	}
 
+	/***
+	 * Facade method of the true 'getbyNombre' method.
+	 * @param nombre String
+	 * @return Usuario
+	 */
 	public Usuario getbyName(String nombre){
 		return getbyName(root,nombre);
 
 	}
 
-
+	/***
+	 * This method finds an user by its 'nombre' atribute.
+	 * @param root Node
+	 * @param nombre String
+	 * @returnUsuario
+	 */
 	private Usuario getbyName(Node root, String nombre){
 		if (root == null)
 		{
 			return null;
 		}
-		// Recursively moving left or right down the tree.
 		else if (nombre.compareTo(root.getData().getNombre()) < 0)
 		{
 			return getbyName(root.getLeft(), nombre);
@@ -217,14 +266,16 @@ public class BinaryTree {
 		{
 			return getbyName(root.getRight(), nombre);
 		}
-		// Returns true when it finds the value.
 		else
 		{
 			return root.getData();
 		}
 
 	}
-	// Helper function that prints the inorder traversal.
+
+	/***
+	 * Facade method of the true 'inorder' method.
+	 */
 	public void inorder()
 	{
 		System.out.print("In-order Traversal:");
@@ -232,7 +283,10 @@ public class BinaryTree {
 		System.out.println();
 	}
 
-	// Inorder: Left, root, right
+	/***
+	 * This method prints the whole users in an in-order pattern.
+	 * @param root Node
+	 */
 	private void inorder(Node root)
 	{
 		if (root == null)
@@ -243,7 +297,9 @@ public class BinaryTree {
 		inorder(root.getRight());
 	}
 
-	// Helper function that prints the preorder traversal.
+	/***
+	 * Facade method of the true 'preorder' method.
+	 */
 	public void preorder()
 	{
 		System.out.print("Pre-order Traversal:");
@@ -251,7 +307,10 @@ public class BinaryTree {
 		System.out.println();
 	}
 
-	// Preorder: Root, left, right
+	/***
+	 * This method prints the whole users in an pre-order pattern.
+	 * @param root Node
+	 */
 	private void preorder(Node root)
 	{
 		if (root == null)
@@ -262,7 +321,9 @@ public class BinaryTree {
 		preorder(root.getRight());
 	}
 
-	// Helper function that prints the postorder traversal.
+	/***
+	 * Facade method of the true 'postorder' method.
+	 */
 	public void postorder()
 	{
 		System.out.print("Post-order Traversal:");
@@ -270,7 +331,10 @@ public class BinaryTree {
 		System.out.println();
 	}
 
-	// Postorder: Left, right, root
+	/***
+	 * This method prints the whole users in an post-order pattern.
+	 * @param root Node
+	 */
 	private void postorder(Node root)
 	{
 		if (root == null)
@@ -281,15 +345,4 @@ public class BinaryTree {
 		System.out.print(" " + root.getData());
 	}
 
-	// How difficult I found this assignment.
-	public static double difficultyRating()
-	{
-		return 3.0;
-	}
-
-	// How many hours I spent on this assignment.
-	public static double hoursSpent()
-	{
-		return 2.0;
-	}
 }

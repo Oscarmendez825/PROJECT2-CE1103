@@ -6,8 +6,21 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
-
+/***
+ * Class used for change data inside a Json file.
+ * @author Oscar Méndez
+ * @author Keyner Gómez
+ * @author Hansel Hampton
+ * @version 1.1
+ * @since 2020
+ */
 public class CambiarValorJson {
+
+    /***
+     * This method modifies the stored password of a certain user.
+     * @param nombre String
+     * @param pass String
+     */
     public static void cambiarPassword(String nombre, String pass){
         JSONParser parser = new JSONParser();
         try {
@@ -66,6 +79,11 @@ public class CambiarValorJson {
 
     }
 
+    /***
+     * This method adds a follower to a certain user.
+     * @param usuario String
+     * @param seguidor String
+     */
     public static void agregarSeguidor(String usuario, String seguidor){
         JSONParser parser = new JSONParser();
         try {
@@ -136,6 +154,11 @@ public class CambiarValorJson {
 
     }
 
+    /***
+     * This method adds a certain user as a member of a company.
+     * @param usuario String
+     * @param nameEmpresa String
+     */
     public static void agregarEmpresa(String usuario, String nameEmpresa){
         JSONParser parser = new JSONParser();
         try {
@@ -196,6 +219,12 @@ public class CambiarValorJson {
         }
 
     }
+
+    /***
+     * This method adds a follower to a certain company.
+     * @param empresa String
+     * @param seguidor String
+     */
     public static void seguidorEmpresa(String seguidor,String empresa){
         JSONParser parser = new JSONParser();
         try {

@@ -3,48 +3,44 @@ package com.StackPackage;
 import com.ListaEnlazada.ListaEnlazada;
 import com.RecetasManager.Receta;
 
+/***
+ * Stack class; used on the NewsFeed of each user.
+ * @author Oscar Méndez
+ * @author Keyner Gómez
+ * @author Hansel Hampton
+ * @version 1.1
+ * @since 2020
+ */
 public class Stack {
+    private ListaEnlazada<Receta> stackList = new ListaEnlazada<Receta>();
+
     /***
-     * Stack class
-     * @author Oscar Méndez
-     * @author Keyner Gómez
-     * @author Marco Picado
-     * @author Hansel Hampton
+     * This method adds an item at the top of the stack.
+     * @param data Receta
      */
+    public void push(Receta data){ this.stackList.addCabeza(data); }
 
-        //Instancia//
-        private ListaEnlazada<Receta> stackList = new ListaEnlazada<Receta>();
-
-
-        /***
-         * Método push
-         * Agregar datos a la pila
-         * @param data
-         */
-        public void push(Receta data){
-            this.stackList.addCabeza(data);
-        }
-        /***
-         * Sacar y eliminar elementos de la cola
-         * @return
-         */
-        public Object pop(){
+    /***
+     * This method removes an item from the top of the stack.
+     * @return Object
+     */
+    public Object pop(){
             return this.stackList.removeFirst().getData();
         }
-        /***
-         * Método peek
-         * Ver el primer elemento en la pila
-         * @return
-         */
-        public Receta peek(){
+
+    /***
+     * This method obtains te item at the top of the stack.
+     * @return Receta
+     */
+    public Receta peek(){
             return stackList.getCabeza();
         }
-        /***
-         * Método isEmpty
-         * Verifica que el stack no esté vacío
-         * @return boolean
-         */
-        public boolean isEmpty(){
+
+    /***
+     * This method verifies if the stack is empty.
+     * @return Boolean
+     */
+    public boolean isEmpty(){
             return this.stackList.isEmpty();
         }
 

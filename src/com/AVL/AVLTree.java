@@ -2,7 +2,14 @@ package com.AVL;
 
 
 import com.RecetasManager.Receta;
-
+/***
+ * AVL tree class; stores the personal recipes of each user.
+ * @author Oscar Méndez
+ * @author Keyner Gómez
+ * @author Hansel Hampton
+ * @version 1.1
+ * @since 2020
+ */
 public class AVLTree {
 
     private NodoAVL root;
@@ -11,7 +18,10 @@ public class AVLTree {
 
         printAll(root);
     }
-
+    /***
+     *this method prints the data of all the nodes in the tree.
+     * @param root NodoAVL
+     */
     public void printAll(NodoAVL root) {
         if(root!=null) {
             System.out.print(root.getItem()+" "+"leftHeight: "+root.getLeftHeight()+", rightHeight: "+root.getRightHeight()+"\n");
@@ -20,10 +30,23 @@ public class AVLTree {
 
         }
     }
+
+    /***
+     * Facade method for the true 'contains' method
+     * @param item String
+     * @return Boolean
+     */
     public boolean contains(String item){
         return contains(root, item);
 
     }
+
+    /***
+     * this method verifies if a certain item is in the tree.
+     * @param root NodoAVL
+     * @param item String
+     * @return Boolean
+     */
     public boolean contains(NodoAVL root,String item){
         if(root==null) {
             return false;
@@ -35,11 +58,23 @@ public class AVLTree {
             return true;
         }
     }
+
+    /***
+     * Facade method for the true 'search' method.
+     * @param item String
+     * @return Receta
+     */
     public Receta search(String item) {
 
         return search(root,item);
     }
 
+    /***
+     * this method finds a certain item in the tree, and returns it.
+     * @param root NodoAVL
+     * @param item String
+     * @return Receta
+     */
     public Receta search(NodoAVL root,String item){
         if(root==null) {
             return null;
@@ -52,11 +87,20 @@ public class AVLTree {
         }
     }
 
+    /***
+     * Facade method for the true 'delete' method.
+     * @param item Receta
+     */
     public void delete(Receta item) {
 
         delete(root, item);
     }
 
+    /***
+     * This method deletes a recipe from the actual tree.
+     * @param root NodoAVL
+     * @param item Receta
+     */
     public void delete(NodoAVL root,Receta item) {
         if(root==null) {
         } else if(item.getName().compareTo(root.getItem().getName())<0) {
@@ -126,6 +170,11 @@ public class AVLTree {
         }
     }
 
+    /***
+     * this method finds and returns the actual smallest item of the tree.
+     * @param root NodoAVL
+     * @return NodoAVL
+     */
     public NodoAVL getSmallest(NodoAVL root) {
         NodoAVL node = root;
         while(node.getLeftChild()!=null) {
@@ -134,6 +183,10 @@ public class AVLTree {
         return node;
     }
 
+    /***
+     * Facade method of the true 'insert' method.
+     * @param item Receta
+     */
     public void insert(Receta item) {
         if(root==null) {
             root = new NodoAVL();
@@ -143,6 +196,11 @@ public class AVLTree {
         }
     }
 
+    /***
+     * This method inserts a new recipe in the tree.
+     * @param root NodoAVL
+     * @param item Receta
+     */
     private void insert(NodoAVL root,Receta item) {
         if(item.getName().compareTo(root.getItem().getName())<0) {
             if(root.getLeftChild()==null) {
@@ -171,6 +229,10 @@ public class AVLTree {
         }
     }
 
+    /***
+     * This method does rotations and rebalances the tree.
+     * @param root NodoAVL
+     */
     public void rebalance(NodoAVL root) {
         if(getDiff(root)>1) {
             if(getDiff(root.getLeftChild())>=0) {
@@ -202,23 +264,29 @@ public class AVLTree {
 
     }
 
+    /***
+     * This method returns the height difference between both left and right branches of the tree.
+     * @param root NodoAVL
+     * @return Integer
+     */
     public int getDiff(NodoAVL root) {
         if(root==null) return 0;
         return root.getLeftHeight()-root.getRightHeight();
     }
 
+    /***
+     * This methos does a node rotation to the left.
+     * @param root NodoAVL
+     */
     public void LLRotation(NodoAVL root) {
-        // LL Rotation
         NodoAVL leftChild = root.getLeftChild();
         NodoAVL grandParent = root.getParent();
         boolean rootIsLeft = root.getIsLeftChild();
-        // root 와 leftChild disconnect
         leftChild.setParent(null);
         root.setLeftChild(null);
         root.setLeftHeight(0);
         root.setIsLeftChild(false);
         if(leftChild.getRightHeight()!=0) {
-            //root 와 leftChild의 rightChild connect
             root.setLeftChild(leftChild.getRightChild());
             root.setLeftHeight(leftChild.getRightHeight());
             leftChild.getRightChild().setParent(root);
@@ -245,19 +313,19 @@ public class AVLTree {
         }
     }
 
-
+    /***
+     * This method does a rotation to the right.
+     * @param root NodoAVL
+     */
     public void RRRotation(NodoAVL root) {
-        // LL Rotation
         NodoAVL rightChild = root.getRightChild();
         NodoAVL grandParent = root.getParent();
         boolean rootIsLeft = root.getIsLeftChild();
-        // root 와 rightChild disconnect
         rightChild.setParent(null);
         root.setRightChild(null);
         root.setRightHeight(0);
         root.setIsLeftChild(true);
         if(rightChild.getLeftHeight()!=0) {
-            //root 와 rightChild의 leftChild connect
             root.setRightChild(rightChild.getLeftChild());
             root.setRightHeight(rightChild.getLeftHeight());
             rightChild.getLeftChild().setParent(root);
@@ -283,11 +351,19 @@ public class AVLTree {
         }
     }
 
+    /***
+     * This method does a LR rotation on a given node.
+     * @param root NodoAVL
+     */
     public void LRRotation(NodoAVL root) {
         RRRotation(root.getLeftChild());
         LLRotation(root);
     }
 
+    /***
+     * This method does a RL rotation on a given node.
+     * @param root NodoAVL
+     */
     public void RLRotation(NodoAVL root) {
         LLRotation(root.getRightChild());
         RRRotation(root);

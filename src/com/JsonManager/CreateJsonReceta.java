@@ -8,11 +8,22 @@ import org.json.simple.JSONObject;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+/***
+ * Recipe creator in Json files.
+ * @author Oscar Méndez
+ * @author Keyner Gómez
+ * @author Hansel Hampton
+ * @version 1.1
+ * @since 2020
+ */
 public class CreateJsonReceta {
 
     String direccion = "C:\\Users\\Oscar\\IdeaProjects\\Project2CE1103\\Recetas.json";
 
-
+    /***
+     * This method adds a new recipe to the respective Json file.
+     * @param receta String
+     */
     public void recetaJson(Receta receta) throws IOException {
         RandomAccessFile randomAccessFile = new RandomAccessFile(direccion, "rw");
         long pos = randomAccessFile.length();

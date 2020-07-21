@@ -5,7 +5,20 @@ import com.RecetasManager.Receta;
 
 import java.util.Arrays;
 
+/***
+ * Insertion sorting class.
+ * @author Oscar Méndez
+ * @author Keyner Gómez
+ * @author Hansel Hampton
+ * @version 1.1
+ * @since 2020
+ */
 public class InsertionSort {
+
+    /***
+     * Main method for the BubbleSort Class
+     * @param arr Array
+     */
     public static ListaEnlazada<String[]> covertToDate(Receta[] arr){
         int dateReceta[] =new int[arr.length];
         for(int i = 0; i< arr.length;i++){

@@ -7,9 +7,22 @@ import org.json.simple.JSONObject;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+/***
+ * Company creator in Json files.
+ * @author Oscar Méndez
+ * @author Keyner Gómez
+ * @author Hansel Hampton
+ * @version 1.1
+ * @since 2020
+ */
 public class CreateJsonEmpresa {
 
     String direccion = "C:\\Users\\Oscar\\IdeaProjects\\Project2CE1103\\JSONEmpresas.json";
+
+    /***
+     * This method adds a new company to the respective Json file.
+     * @param empresa String
+     */
     public void empresaJson(Empresa empresa) throws IOException {
         RandomAccessFile randomAccessFile = new RandomAccessFile(direccion, "rw");
         long pos = randomAccessFile.length();

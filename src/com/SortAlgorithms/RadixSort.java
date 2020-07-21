@@ -1,6 +1,19 @@
 package com.SortAlgorithms;
 
+/***
+ * Radix sorting class.
+ * @author Oscar Méndez
+ * @author Keyner Gómez
+ * @author Hansel Hampton
+ * @version 1.1
+ * @since 2020
+ */
 public class RadixSort {
+
+    /***
+     * Main method for the RadixSort Class
+     * @param arr Array
+     */
     public static void radixSort(int[] arr){
         if(arr.length <= 1) return;
         int max = 0;

@@ -1,17 +1,28 @@
 package com.SPLAY;
 
-
 import com.EmpresasManager.Empresa;
 
+/***
+ * Splay tree class; stores the info of each created company.
+ * @author Oscar Méndez
+ * @author Keyner Gómez
+ * @author Hansel Hampton
+ * @version 1.1
+ * @since 2020
+ */
 public class SplayTree {
     private BinaryNode root;
 
+    /***
+     * Constructor method of the SplayTree class.\
+     */
     public SplayTree() {
         root = null;
     }
 
     /**
-     * Insert into the tree.
+     * This method inserts a new company into the tree.
+     * @param data Empresa
      */
     public void insert(Empresa data) {
         BinaryNode n;
@@ -39,7 +50,8 @@ public class SplayTree {
     }
 
     /**
-     * Remove from the tree.
+     * This method removes a company from the tree.
+     * @param data Empresa
      */
     public void remove(Empresa data) {
         BinaryNode x;
@@ -60,7 +72,8 @@ public class SplayTree {
     }
 
     /**
-     * Find the smallest item in the tree.
+     * This method finds the smallest item in the tree.
+     * @return Empresa
      */
     public Empresa findMin() {
         BinaryNode x = root;
@@ -71,7 +84,8 @@ public class SplayTree {
     }
 
     /**
-     * Find the largest item in the tree.
+     * This method finds the largest item in the tree.
+     * @return Empresa
      */
     public Empresa findMax() {
         BinaryNode x = root;
@@ -82,7 +96,9 @@ public class SplayTree {
     }
 
     /**
-     * Find an item in the tree.
+     * This method finds an item in the tree.
+     * @param data String
+     * @return Empresa
      */
     public Empresa find(String data) {
         if (root == null) {
@@ -94,6 +110,12 @@ public class SplayTree {
         }
         return root.getData();
     }
+
+    /***
+     * This method verifies if an item is in the tree.
+     * @param data String
+     * @return Boolean
+     */
     public boolean contains(String data) {
         if (root == null) {
             return false;
@@ -106,15 +128,16 @@ public class SplayTree {
     }
 
     /**
-     * Test if the tree is logically empty.
-     * @return true if empty, false otherwise.
+     * This method tests if the tree is logically empty.
+     * @return Boolean
      */
     public boolean isEmpty() {
         return root == null;
     }
 
-    /** this method just illustrates the top-down method of
-     * implementing the move-to-root operation
+    /***
+     * This method moves a node to the root.
+     * @param data Empresa
      */
     private void moveToRoot(Empresa data) {
         BinaryNode l, r, t, y;
@@ -125,28 +148,31 @@ public class SplayTree {
         for (;;) {
             if (data.getNombre().compareTo(t.getData().getNombre()) < 0) {
                 if (t.getLeft() == null) break;
-                r.setLeft(t);                                 /* link right */
+                r.setLeft(t);
                 r = t;
                 t = t.getLeft();
             } else if (data.getNombre().compareTo(t.getData().getNombre()) > 0) {
                 if (t.getRight() == null) break;
-                l.setRight(t);                                /* link left */
+                l.setRight(t);
                 l = t;
                 t = t.getRight();
             } else {
                 break;
             }
         }
-        l.setRight(t.getLeft());                                   /* assemble */
+        l.setRight(t.getLeft());
         r.setLeft(t.getRight());
         t.setLeft(header.getRight());
         t.setRight(header.getLeft());
         root = t;
     }
 
-    private static BinaryNode header = new BinaryNode(null); // For splay
+    private static BinaryNode header = new BinaryNode(null);
 
-
+    /***
+     * This method applies the 'splay' characteristic sorting operation on a node.
+     * @param data Empresa
+     */
     private void splay(Empresa data) {
         BinaryNode l, r, t, y;
         l = r = header;
@@ -157,37 +183,42 @@ public class SplayTree {
             if (data.getNombre().compareTo(t.getData().getNombre()) < 0) {
                 if (t.getLeft() == null) break;
                 if (data.getNombre().compareTo(t.getLeft().getData().getNombre()) < 0) {
-                    y = t.getLeft();                            /* rotate right */
+                    y = t.getLeft();
                     t.setLeft(y.getRight());
                     y.setRight(t);
                     t = y;
                     if (t.getLeft() == null) break;
                 }
-                r.setLeft(t);                                 /* link right */
+                r.setLeft(t);
                 r = t;
                 t = t.getLeft();
             } else if (data.getNombre().compareTo(t.getData().getNombre()) > 0) {
                 if (t.getRight() == null) break;
                 if (data.getNombre().compareTo(t.getRight().getData().getNombre()) > 0) {
-                    y = t.getRight();                            /* rotate left */
+                    y = t.getRight();
                     t.setRight(y.getLeft());
                     y.setLeft(t);
                     t = y;
                     if (t.getRight() == null) break;
                 }
-                l.setRight(t);                                /* link left */
+                l.setRight(t);
                 l = t;
                 t = t.getRight();
             } else {
                 break;
             }
         }
-        l.setRight(t.getLeft());                                   /* assemble */
+        l.setRight(t.getLeft());
         r.setLeft(t.getRight());
         t.setLeft(header.getRight());
         t.setRight(header.getLeft());
         root = t;
     }
+
+    /***
+     * This method applies the 'splay' characteristic sorting operation on a node.
+     * @param data String
+     */
     private void splay(String data) {
         BinaryNode l, r, t, y;
         l = r = header;
@@ -198,32 +229,32 @@ public class SplayTree {
             if (data.compareTo(t.getData().getNombre()) < 0) {
                 if (t.getLeft() == null) break;
                 if (data.compareTo(t.getLeft().getData().getNombre()) < 0) {
-                    y = t.getLeft();                            /* rotate right */
+                    y = t.getLeft();
                     t.setLeft(y.getRight());
                     y.setRight(t);
                     t = y;
                     if (t.getLeft() == null) break;
                 }
-                r.setLeft(t);                                 /* link right */
+                r.setLeft(t);
                 r = t;
                 t = t.getLeft();
             } else if (data.compareTo(t.getData().getNombre()) > 0) {
                 if (t.getRight() == null) break;
                 if (data.compareTo(t.getRight().getData().getNombre()) > 0) {
-                    y = t.getRight();                            /* rotate left */
+                    y = t.getRight();
                     t.setRight(y.getLeft());
                     y.setLeft(t);
                     t = y;
                     if (t.getRight() == null) break;
                 }
-                l.setRight(t);                                /* link left */
+                l.setRight(t);
                 l = t;
                 t = t.getRight();
             } else {
                 break;
             }
         }
-        l.setRight(t.getLeft());                                   /* assemble */
+        l.setRight(t.getLeft());
         r.setLeft(t.getRight());
         t.setLeft(header.getRight());
         t.setRight(header.getLeft());

@@ -20,19 +20,33 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 
-
+/***
+ * This class manages all the background process to store information in the server
+ * @author Oscar Méndez
+ * @author Keyner Gómez
+ * @author Hansel Hampton
+ * @version 1.1
+ * @since 2020
+ */
 public class ManejoUsuarios {
 
     BinaryTree usuarios;
     CreateJsonUser jsonUser = new CreateJsonUser();
     SplayTree empresas = new SplayTree();
 
-
+    /***
+     * Constructor method of the 'ManejoUsuarios' class.
+     */
     public ManejoUsuarios() {
         usuarios = new BinaryTree();
 
     }
 
+    /***
+     *This method does a sign-in verification of e-mail and password.
+     * @param usuario Usuario
+     * @return String
+     */
     public String verificacion(Usuario usuario) {
         if (usuarios.contains(usuario)==true){
             Usuario temp = usuarios.getbyEmail(usuario.getEmail());
@@ -49,7 +63,12 @@ public class ManejoUsuarios {
         }
     }
 
-
+    /***
+     *This method creates a new user and adds it to the user's Json file.
+     * @param nuevo Usuario
+     * @return String
+     * @throws NoSuchAlgorithmException
+     */
     public String crearUsuario(Usuario nuevo) throws NoSuchAlgorithmException{
         if (usuarios.contains(nuevo)==true){
 
@@ -76,15 +95,32 @@ public class ManejoUsuarios {
 
 
     }
+
+    /***
+     *This method extracts an user from the user's BST.
+     * @param nombre String
+     * @return Usuario
+     */
     public Usuario getUser(String nombre){
         return usuarios.getbyName(nombre);
 
     }
 
+    /***
+     *This method returns the user's BST.
+     * @return BinaryTree
+     */
     public BinaryTree getUsuarios() {
         return usuarios;
     }
 
+    /***
+     *This method adds a new recipe to the user's AVL tree, the own MyMenu and the NewsFeed of all
+     * of the user's followers.
+     * @param receta Receta
+     * @return String
+     * @throws IOException
+     */
     public String agregarReceta(Receta receta) throws IOException {
         if (usuarios.getbyName(receta.getAutor()).getRecetas().contains(receta.getName())==true){
             return "ERROR";
@@ -107,8 +143,10 @@ public class ManejoUsuarios {
 
     }
 
-
-
+    /***
+     *This method adds a recipe in the user's MyMenu.
+     * @param receta Receta
+     */
     public void addinmyMenu(Receta receta){
         Receta[] receta1 = new Receta[usuarios.getbyName(receta.getAutor()).getMyMenu().getLista().getSize()+1];
         for (int i = 0;i<usuarios.getbyName(receta.getAutor()).getMyMenu().getLista().getSize();i++){
@@ -124,6 +162,12 @@ public class ManejoUsuarios {
         }
     }
 
+    /***
+     * This method adds a new company to the appropriate Splay tree and to the Json file.
+     * @param empresa Empresa
+     * @param name String
+     * @return String
+     */
     public String agregarEmpresa(Empresa empresa, String name) {
 
         if (empresas.contains(empresa.getNombre())==true){
@@ -144,6 +188,10 @@ public class ManejoUsuarios {
 
 
     }
+
+    /***
+     * This method loads in the BST all of the users from the Json file.
+     */
     public void cargarUsuarios(){
         JSONParser parser = new JSONParser();
         try {
@@ -192,6 +240,11 @@ public class ManejoUsuarios {
 
     }
 
+    /***
+     *This method returns a JSON Array with all the showed elements in the NewsFeed.
+     * @param nombre String
+     * @return JSONArray
+     */
     public JSONArray getNewsFeed(String nombre) {
         JSONArray jsonArray = new JSONArray();
         ListaEnlazada<Receta> recetas = new ListaEnlazada<Receta>();
@@ -243,6 +296,10 @@ public class ManejoUsuarios {
         usuarios.getbyName(nombre).getNewsFeed().setStack(stack);
         return jsonArray;
     }
+
+    /***
+     *This method loads in each user AVL all the recipes stored in Json file.
+     */
     public void cargarRecetas(){
         JSONParser parser = new JSONParser();
         try {
@@ -325,6 +382,10 @@ public class ManejoUsuarios {
         }
 
     }
+
+    /***
+     * This method loads in the Splay tree all of the companies stored in the Json file.
+     */
     public void cargarEmpresas(){
         JSONParser parser = new JSONParser();
         try {
@@ -362,10 +423,19 @@ public class ManejoUsuarios {
 
     }
 
+    /***
+     * This method returns the Splay tree of stored companies.
+     * @return SplayTree
+     */
     public SplayTree getEmpresas() {
         return empresas;
     }
 
+    /***
+     *This method returns a JSON array with all of the showed elements in the personal MyMenu of a certain user.
+     * @param name String
+     * @return JSONArray
+     */
     public JSONArray getMyMenu(String name) {
         JSONArray genA = new JSONArray();
         ListaEnlazada<String[]> temp = usuarios.getbyName(name).getMyMenu().getLista();

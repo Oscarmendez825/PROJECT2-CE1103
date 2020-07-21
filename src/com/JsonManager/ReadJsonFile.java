@@ -10,8 +10,19 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-
+/***
+ * Class destined to read the data stored in Json files.
+ * @author Oscar Méndez
+ * @author Keyner Gómez
+ * @author Hansel Hampton
+ * @version 1.1
+ * @since 2020
+ */
 public class ReadJsonFile {
+
+    /***
+     * This method reads the content of a certain Json file.
+     */
     public static void leerJson(){
         JSONParser parser = new JSONParser();
         try {
