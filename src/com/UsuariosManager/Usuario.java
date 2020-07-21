@@ -17,13 +17,21 @@ public class Usuario{
     ListaEnlazada<String> empresa = new ListaEnlazada<String>();
     private boolean isChef = false;
     AVLTree recetas = new AVLTree();
-
+    private int OState = 0;
     public Usuario() {
         this.nombre = nombre;
         this.password = password;
         this.email = email;
         this.edad = edad;
 
+    }
+
+    public int getOState() {
+        return OState;
+    }
+
+    public void setOState(int OState) {
+        this.OState = OState;
     }
 
     public MyMenu getMyMenu() {

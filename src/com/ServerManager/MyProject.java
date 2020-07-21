@@ -6,14 +6,15 @@ import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @ApplicationPath("/resource")
 public class MyProject extends Application {
 
-//    @Override
-////    public Set<Class<?>> getClasses(){
-////        HashSet hashSet = new HashSet<Class<?>>();
-////        hashSet.add(HelloWorld.class);
-////        return hashSet;
-////
-////    }
+/*    @Override
+    public Set<Class<?>> getClasses(){
+        HashSet hashSet = new HashSet<Class<?>>();
+        hashSet.add(HelloWorld.class);
+        return hashSet;
+
+   }*/
 }

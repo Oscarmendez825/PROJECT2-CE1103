@@ -5,12 +5,11 @@ package com.UsuariosManager;
 
 import com.EmpresasManager.Empresa;
 import com.JsonManager.CambiarValorJson;
-import com.JsonManager.CreateJsonReceta;
-import com.JsonManager.ReadJsonFile;
-import com.ListaEnlazada.ListaEnlazada;
 import com.RecetasManager.Receta;
-import org.json.simple.JSONArray;
 
+
+import com.sample2.RUNMAIN2;
+import org.json.simple.JSONArray;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
@@ -18,7 +17,7 @@ import java.security.NoSuchAlgorithmException;
 
 
 @Path("USUARIOS")
-public class RegistroUsuario {
+public class RegistroUsuario{
 
 
     public static ManejoUsuarios usuarios = new ManejoUsuarios();
@@ -39,6 +38,7 @@ public class RegistroUsuario {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("getUsuario/{nombre}")
     public GenericUser getUsuario(@PathParam("nombre") String nombre){
+        System.out.println(usuarios.getUsuarios().isEmpty());
         GenericUser temp = new GenericUser();
         temp.setNombre(usuarios.getUser(nombre).getNombre());
         temp.setCorreo(usuarios.getUser(nombre).getEmail());
@@ -139,14 +139,10 @@ public class RegistroUsuario {
 
 
     }
-    @GET
-    @Path("imprimir")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String imprimir(){
-        ReadJsonFile.leerJson();
 
-        return "jiji";
+    public void setChef(String usuario){
 
+        usuarios.getUsuarios().getbyName(usuario).setIsChef(true);
     }
 
 
@@ -158,12 +154,12 @@ public class RegistroUsuario {
         return usuarios.agregarEmpresa(empresa,name);
 
     }
-    @POST
     @Path("cargarDatos")
+    @POST
     public void cargarDatos(){
         usuarios.cargarUsuarios();
         usuarios.cargarRecetas();
-        usuarios.cargarEmpresas();
+        //usuarios.cargarEmpresas();
     }
 
     @POST
@@ -188,4 +184,22 @@ public class RegistroUsuario {
         }
 
     }
+    @GET
+    @Path("serverManager")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String openI(){
+        RUNMAIN2 runmain2 = new RUNMAIN2();
+        runmain2.iniciar();
+        return "gg";
+    }
+
+    @GET
+    @Path("myMenu/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JSONArray getMyMenu(@PathParam("name") String name){
+        return usuarios.getMyMenu(name);
+
+    }
+
+
 }

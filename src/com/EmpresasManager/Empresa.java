@@ -10,7 +10,7 @@ public class Empresa {
     private String nombre = "";
     private String contacto = "";
     private String horario = "";
-    private ListaEnlazada<String> seguidores;
+    private ListaEnlazada<String> seguidores = new ListaEnlazada<String>();
 
     public void addSeguidor(Usuario usuario){
         seguidores.add(usuario.getNombre());

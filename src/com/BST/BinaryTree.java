@@ -7,6 +7,13 @@ public class BinaryTree {
 	private Node root;
 
 
+	public boolean isEmpty(){
+		if (root == null){
+			return true;
+		}else {
+			return false;
+		}
+	}
 	public void insert(Usuario data)
 	{
 

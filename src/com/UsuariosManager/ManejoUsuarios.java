@@ -3,10 +3,12 @@ import com.BST.BinaryTree;
 import com.EmpresasManager.Empresa;
 import com.JsonManager.CambiarValorJson;
 import com.JsonManager.CreateJsonEmpresa;
+import com.JsonManager.CreateJsonReceta;
 import com.JsonManager.CreateJsonUser;
 import com.ListaEnlazada.ListaEnlazada;
 import com.RecetasManager.Receta;
 import com.SPLAY.SplayTree;
+import com.SortAlgorithms.InsertionSort;
 import com.StackPackage.Stack;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -91,9 +93,11 @@ public class ManejoUsuarios {
             Calendar c = Calendar.getInstance();
             receta.setDia(c.get(Calendar.DATE));
             receta.setMes(c.get(Calendar.MONTH));
-
+            addinmyMenu(receta);
             usuarios.getbyName(receta.getAutor()).getRecetas().insert(receta);
             usuarios.getbyName(receta.getAutor()).getNewsFeed().getStack().push(receta);
+            CreateJsonReceta r = new CreateJsonReceta();
+            r.recetaJson(receta);
             for(int i = 0; i < usuarios.getbyName(receta.getAutor()).getSeguidores().getSize(); i++){
 
                 usuarios.getbyName(usuarios.getbyName(receta.getAutor()).getSeguidores().get(i)).getNewsFeed().getStack().push(receta);
@@ -105,11 +109,24 @@ public class ManejoUsuarios {
 
 
 
+    public void addinmyMenu(Receta receta){
+        Receta[] receta1 = new Receta[usuarios.getbyName(receta.getAutor()).getMyMenu().getLista().getSize()+1];
+        for (int i = 0;i<usuarios.getbyName(receta.getAutor()).getMyMenu().getLista().getSize();i++){
+            MyMenu myMenu = usuarios.getbyName(receta.getAutor()).getMyMenu();
+            receta1[i] = usuarios.getbyName(myMenu.getLista().get(i)[0]).getRecetas().search(myMenu.getLista().get(i)[1]);
 
+        }
+        receta1[usuarios.getbyName(receta.getAutor()).getMyMenu().getLista().getSize()]  = receta;
+        switch (usuarios.getbyName(receta.getAutor()).getOState()){
+            case 0:
+                usuarios.getbyName(receta.getAutor()).getMyMenu().setLista(InsertionSort.covertToDate(receta1));
+
+        }
+    }
 
     public String agregarEmpresa(Empresa empresa, String name) {
 
-        if (empresas.contains(empresa.getNombre())==true||usuarios.contains(name)==true){
+        if (empresas.contains(empresa.getNombre())==true){
             return "ERROR";
 
         }else {
@@ -347,5 +364,48 @@ public class ManejoUsuarios {
 
     public SplayTree getEmpresas() {
         return empresas;
+    }
+
+    public JSONArray getMyMenu(String name) {
+        JSONArray genA = new JSONArray();
+        ListaEnlazada<String[]> temp = usuarios.getbyName(name).getMyMenu().getLista();
+        for(int i = 0; i < temp.getSize();i++){
+            JSONObject jsonObject = new JSONObject();
+            Receta receta = usuarios.getbyName(temp.get(i)[0]).getRecetas().search(temp.get(i)[1]);
+            JSONArray ingredientes = new JSONArray();
+            JSONArray dieta = new JSONArray();
+            JSONArray pasos = new JSONArray();
+                for(int j=0; i < receta.getIngredientes().length;i++){
+                    ingredientes.add(receta.getIngredientes()[i]);
+
+
+                }
+                for(int j=0; i < receta.getDieta().length;i++){
+                    dieta.add(receta.getDieta()[i]);
+
+
+                }
+                for(int j=0; i < receta.getPasos().length;i++){
+                    pasos.add(receta.getPasos()[i]);
+
+
+                }
+
+                jsonObject.put("name",receta.getName());
+                jsonObject.put("autor",receta.getAutor());
+                jsonObject.put("tipoPlato",receta.getTipoPlato());
+                jsonObject.put("porciones",receta.getPorciones());
+                jsonObject.put("duracion", receta.getDuracion());
+                jsonObject.put("tiempo", receta.getTiempo());
+                jsonObject.put("dificultad", receta.getDificultad());
+                jsonObject.put("dieta",dieta);
+                jsonObject.put("ingredientes",ingredientes);
+                jsonObject.put("pasos",pasos);
+                jsonObject.put("calificacion",receta.getCalificacion());
+                jsonObject.put("mes",receta.getMes());
+                jsonObject.put("dia",receta.getDia());
+                genA.add(jsonObject);
+        }
+        return genA;
     }
 }

@@ -32,6 +32,7 @@ public class CreateJsonEmpresa {
 
 
             JSONArray seguidores = new JSONArray();
+
             for (int i = 0; i<empresa.getSeguidores().getSize();i++){
                 seguidores.add(empresa.getSeguidores().get(i));
 
