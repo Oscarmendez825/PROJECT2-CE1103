@@ -1,5 +1,4 @@
 package com.UsuariosManager;
-
 /***
  * Security class, encharged of the initial settings of the change-password process
  * @author Oscar Méndez
@@ -14,7 +13,6 @@ public class Seguridad {
     private String contraseñaVieja = "";
     private String nombre = "";
     private String correo = "";
-
     /***
      * This method returns the 'nuevaContraseña' variable.
      * @return String
@@ -22,7 +20,6 @@ public class Seguridad {
     public String getNuevaContraseña() {
         return nuevaContraseña;
     }
-
     /***
      * This method changes the value of the 'nuevaContraseña' variable.
      * @param nuevaContraseña String
@@ -30,7 +27,6 @@ public class Seguridad {
     public void setNuevaContraseña(String nuevaContraseña) {
         this.nuevaContraseña = nuevaContraseña;
     }
-
     /***
      * This method returns the 'contraseñaVieja' variable.
      * @return String
@@ -38,7 +34,6 @@ public class Seguridad {
     public String getContraseñaVieja() {
         return contraseñaVieja;
     }
-
     /***
      * This method changes the value of the 'contraseñaVieja' variable.
      * @param contraseñaVieja String
@@ -46,7 +41,6 @@ public class Seguridad {
     public void setContraseñaVieja(String contraseñaVieja) {
         this.contraseñaVieja = contraseñaVieja;
     }
-
     /***
      * This method returns the 'nombre' variable.
      * @return String
@@ -54,7 +48,6 @@ public class Seguridad {
     public String getNombre() {
         return nombre;
     }
-
     /***
      * This method changes the value of the 'nombre' variable.
      * @param nombre String
@@ -62,15 +55,13 @@ public class Seguridad {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     /***
-     * This method returns the 'correo' variable.
+     * This method returns the 'correo' attribute.
      * @return String
      */
     public String getCorreo() {
         return correo;
     }
-
     /***
      * This method changes the value of the 'correo' variable.
      * @param correo String

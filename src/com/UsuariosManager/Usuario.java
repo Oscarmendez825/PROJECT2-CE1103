@@ -36,7 +36,6 @@ public class Usuario{
         this.edad = edad;
 
     }
-
     /***
      * This method returns the 'Ostate' variable.
      * @return Integer
@@ -44,7 +43,6 @@ public class Usuario{
     public int getOState() {
         return OState;
     }
-
     /***
      * This method changes the value of the 'Ostate' variable.
      * @param OState Integer
@@ -52,7 +50,6 @@ public class Usuario{
     public void setOState(int OState) {
         this.OState = OState;
     }
-
     /***
      * This method returns the 'myMenu' variable.
      * @return MyMenu
@@ -60,7 +57,6 @@ public class Usuario{
     public MyMenu getMyMenu() {
         return myMenu;
     }
-
     /***
      * This method returns the 'seguidos' variable.
      * @return ListaEnlazada
@@ -69,7 +65,6 @@ public class Usuario{
 
         return seguidos;
     }
-
     /***
      * This method returns the 'seguidores' variable.
      * @return ListaEnlazada
@@ -78,16 +73,13 @@ public class Usuario{
 
         return seguidores;
     }
-
     /***
      * This method returns the 'empresa' variable.
      * @return ListaEnlazada
      */
-
     public ListaEnlazada<String> getEmpresa() {
         return empresa;
     }
-
     /***
      * This method returns the 'nombre' variable.
      * @return String
@@ -96,8 +88,7 @@ public class Usuario{
 
         return nombre;
     }
-
-    /***"
+    /***
      * This method changes the value of the 'nombre' variable.
      * @param nombre String
      */
@@ -105,7 +96,6 @@ public class Usuario{
 
         this.nombre = nombre;
     }
-
     /***
      * This method returns the 'password' variable.
      * @return String
@@ -114,7 +104,6 @@ public class Usuario{
 
         return password;
     }
-
     /***"
      * This method changes the value of the 'password' variable.
      * @param password String
@@ -123,7 +112,6 @@ public class Usuario{
 
         this.password = password;
     }
-
     /***
      * This method returns the 'email' variable.
      * @return String
@@ -132,8 +120,7 @@ public class Usuario{
 
         return email;
     }
-
-    /***"
+    /***
      * This method changes the value of the 'email' variable.
      * @param email String
      */
@@ -141,7 +128,6 @@ public class Usuario{
 
         this.email = email;
     }
-
     /***
      * This method returns the 'edad' variable.
      * @return Integer
@@ -150,8 +136,7 @@ public class Usuario{
 
         return edad;
     }
-
-    /***"
+    /***
      * This method changes the value of the 'edad' variable.
      * @param edad Integer
      */
@@ -159,7 +144,6 @@ public class Usuario{
 
         this.edad = edad;
     }
-
     /***
      * This method returns the 'isChef' variable.
      * @return Boolean
@@ -167,7 +151,6 @@ public class Usuario{
     public boolean getIsChef() {
         return isChef;
     }
-
     /***"
      * This method changes the value of the 'isChef' variable.
      * @param chef Boolean
@@ -175,7 +158,6 @@ public class Usuario{
     public void setIsChef(boolean chef) {
         isChef = chef;
     }
-
     /***
      * This method returns the 'recetas' variable.
      * @return AVLTree
@@ -183,7 +165,6 @@ public class Usuario{
     public AVLTree getRecetas() {
         return recetas;
     }
-
     /***
      * This method returns the 'newsFeed' variable.
      * @return NewsFeed

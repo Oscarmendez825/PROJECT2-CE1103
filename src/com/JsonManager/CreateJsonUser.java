@@ -7,7 +7,6 @@ import org.json.simple.JSONObject;
 
 
 import java.io.*;
-
 /***
  * User creator in Json files.
  * @author Oscar Méndez

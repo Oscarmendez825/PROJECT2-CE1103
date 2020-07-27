@@ -1,5 +1,4 @@
 package com.SortAlgorithms;
-
 /***
  * Quick sorting class.
  * @author Oscar Méndez
@@ -9,7 +8,6 @@ package com.SortAlgorithms;
  * @since 2020
  */
 public class QuickSort {
-
     /***
      * Main method for the QuickSort Class
      * @param arr Array

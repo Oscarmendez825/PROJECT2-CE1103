@@ -41,7 +41,6 @@ public class ManejoUsuarios {
         usuarios = new BinaryTree();
 
     }
-
     /***
      *This method does a sign-in verification of e-mail and password.
      * @param usuario Usuario
@@ -95,7 +94,6 @@ public class ManejoUsuarios {
 
 
     }
-
     /***
      *This method extracts an user from the user's BST.
      * @param nombre String
@@ -105,7 +103,6 @@ public class ManejoUsuarios {
         return usuarios.getbyName(nombre);
 
     }
-
     /***
      *This method returns the user's BST.
      * @return BinaryTree
@@ -113,7 +110,6 @@ public class ManejoUsuarios {
     public BinaryTree getUsuarios() {
         return usuarios;
     }
-
     /***
      *This method adds a new recipe to the user's AVL tree, the own MyMenu and the NewsFeed of all
      * of the user's followers.
@@ -161,7 +157,6 @@ public class ManejoUsuarios {
 
         }
     }
-
     /***
      * This method adds a new company to the appropriate Splay tree and to the Json file.
      * @param empresa Empresa
@@ -188,7 +183,6 @@ public class ManejoUsuarios {
 
 
     }
-
     /***
      * This method loads in the BST all of the users from the Json file.
      */
@@ -239,7 +233,6 @@ public class ManejoUsuarios {
         }
 
     }
-
     /***
      *This method returns a JSON Array with all the showed elements in the NewsFeed.
      * @param nombre String
@@ -296,7 +289,6 @@ public class ManejoUsuarios {
         usuarios.getbyName(nombre).getNewsFeed().setStack(stack);
         return jsonArray;
     }
-
     /***
      *This method loads in each user AVL all the recipes stored in Json file.
      */
@@ -372,6 +364,10 @@ public class ManejoUsuarios {
 
 
                 usuarios.getbyName(receta.getAutor()).getRecetas().insert(receta);
+                for(int i = 0; i < usuarios.getbyName(receta.getAutor()).getSeguidores().getSize(); i++){
+
+                    usuarios.getbyName(usuarios.getbyName(receta.getAutor()).getSeguidores().get(i)).getNewsFeed().getStack().push(receta);
+                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -382,7 +378,6 @@ public class ManejoUsuarios {
         }
 
     }
-
     /***
      * This method loads in the Splay tree all of the companies stored in the Json file.
      */
@@ -422,7 +417,6 @@ public class ManejoUsuarios {
         }
 
     }
-
     /***
      * This method returns the Splay tree of stored companies.
      * @return SplayTree
@@ -430,7 +424,6 @@ public class ManejoUsuarios {
     public SplayTree getEmpresas() {
         return empresas;
     }
-
     /***
      *This method returns a JSON array with all of the showed elements in the personal MyMenu of a certain user.
      * @param name String

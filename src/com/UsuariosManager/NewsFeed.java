@@ -2,7 +2,6 @@ package com.UsuariosManager;
 
 import com.RecetasManager.Receta;
 import com.StackPackage.Stack;
-
 /***
  * This class is the template for the user's NewsFeed, section of recent posts of people the user follows.
  * @author Oscar Méndez
@@ -20,8 +19,8 @@ public class NewsFeed {
      */
     public NewsFeed(){
 
-    }
 
+    }
     /***
      * This method adds other recipe to show in the stack of the user's NewsFeed.
      * @param receta Receta
@@ -30,7 +29,6 @@ public class NewsFeed {
         stack.push(receta);
 
     }
-
     /***
      * This method obtain the whole stack from the NewsFeed.
      * @return Stack
@@ -38,7 +36,6 @@ public class NewsFeed {
     public Stack getStack() {
         return stack;
     }
-
     /***
      * This method sets a different stack to the NewsFeed.
      * @param stack Stack

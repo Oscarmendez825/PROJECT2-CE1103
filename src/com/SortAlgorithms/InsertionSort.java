@@ -4,7 +4,6 @@ import com.ListaEnlazada.ListaEnlazada;
 import com.RecetasManager.Receta;
 
 import java.util.Arrays;
-
 /***
  * Insertion sorting class.
  * @author Oscar Méndez
@@ -14,9 +13,8 @@ import java.util.Arrays;
  * @since 2020
  */
 public class InsertionSort {
-
     /***
-     * Main method for the BubbleSort Class
+     * Method that convert the array in date elements
      * @param arr Array
      */
     public static ListaEnlazada<String[]> covertToDate(Receta[] arr){
@@ -41,6 +39,10 @@ public class InsertionSort {
         return lista;
 
     }
+    /***
+     * Main method for the InsertionSort Class
+     * @param arr Array
+     */
     public static int[] insertionSort(int[] arr){
         for( int i=0; i<arr.length-1; i++ ) {
             for( int j=i+1; j>0; j-- ) {

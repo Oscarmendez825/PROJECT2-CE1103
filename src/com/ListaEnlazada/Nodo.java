@@ -1,5 +1,4 @@
 package com.ListaEnlazada;
-
 /***
  * Node class for the linked list.
  * @author Oscar Méndez
@@ -20,7 +19,6 @@ public class Nodo <Type> {
         this.data = data;
         this.next = null;
     }
-
     /***
      * Second constructor method of the Nodo class.
      */
@@ -28,7 +26,6 @@ public class Nodo <Type> {
         this.data = data;
         this.next = null;
     }
-
     /***
      * This method returns the 'data' variable.
      * @return Type
@@ -37,7 +34,6 @@ public class Nodo <Type> {
         return this.data;
 
     }
-
     /***
      * This method changes the value of the 'data' variable.
      * @param data Type
@@ -46,13 +42,11 @@ public class Nodo <Type> {
         this.data = data;
 
     }
-
     /***
      * This method returns the 'next' variable.
      * @return Nodo
      */
     public Nodo getNext(){
-
         return this.next;
     }
     /***

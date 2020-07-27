@@ -3,6 +3,7 @@ package com.EmpresasManager;
 import com.ListaEnlazada.ListaEnlazada;
 import com.UsuariosManager.Usuario;
 
+
 /***
  * Node class for the linked list.
  * @author Oscar Méndez
@@ -25,7 +26,6 @@ public class Empresa {
     public void addSeguidor(Usuario usuario){
         seguidores.add(usuario.getNombre());
     }
-
     /***
      * This method obtains the list of actual followers of the company.
      * @return ListaEnlazada
@@ -34,7 +34,6 @@ public class Empresa {
         return seguidores;
 
     }
-
     /***
      * This method returns the 'nombre' variable.
      * @return String
@@ -42,7 +41,6 @@ public class Empresa {
     public String getNombre() {
         return nombre;
     }
-
     /***
      * This method change the content of the 'nombre' variable.
      * @param nombre String
@@ -50,7 +48,6 @@ public class Empresa {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     /***
      * This method returns the 'contacto' variable.
      * @return String
@@ -58,7 +55,6 @@ public class Empresa {
     public String getContacto() {
         return contacto;
     }
-
     /***
      * This method change the content of the 'contacto' variable.
      * @param contacto String
@@ -66,7 +62,6 @@ public class Empresa {
     public void setContacto(String contacto) {
         this.contacto = contacto;
     }
-
     /***
      * This method returns the 'horario' variable.
      * @return String
@@ -74,7 +69,6 @@ public class Empresa {
     public String getHorario() {
         return horario;
     }
-
     /***
      * This method change the content of the 'horario' variable.
      * @param horario String

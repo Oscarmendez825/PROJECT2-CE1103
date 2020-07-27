@@ -1,5 +1,4 @@
 package com.SortAlgorithms;
-
 /***
  * Radix sorting class.
  * @author Oscar Méndez
@@ -9,7 +8,6 @@ package com.SortAlgorithms;
  * @since 2020
  */
 public class RadixSort {
-
     /***
      * Main method for the RadixSort Class
      * @param arr Array

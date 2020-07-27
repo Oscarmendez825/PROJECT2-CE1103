@@ -1,5 +1,4 @@
 package com.ListaEnlazada;
-
 /***
  * Linked list class; used for the MyMenu of each user.
  * @author Oscar Méndez
@@ -12,7 +11,6 @@ public class ListaEnlazada <Type>{
     private Nodo first;
     private Nodo last;
     private int size = 0;
-
     /***
      * Constructor of the 'ListaEnlazada' class.
      */
@@ -20,7 +18,6 @@ public class ListaEnlazada <Type>{
         this.first = null;
         this.last = null;
     }
-
     /***
      * This method verifies if the list is empty.
      * @return Boolean
@@ -28,7 +25,6 @@ public class ListaEnlazada <Type>{
     public boolean isEmpty() {
         return this.first == null;
     }
-
     /***
      * This method adds a new item to the list.
      * @param data Type
@@ -48,7 +44,6 @@ public class ListaEnlazada <Type>{
         }
         size++;
     }
-
     /***
      * This method verifies if a item is in the list.
      * @param data Type
@@ -67,7 +62,6 @@ public class ListaEnlazada <Type>{
         }
         return false;
     }
-
     /***
      * This method removes a whole section from the list, from a certain position to the tail of the list.
      * @param pos Integer
@@ -84,7 +78,6 @@ public class ListaEnlazada <Type>{
         size = pos;
 
     }
-
     /***
      * This method prints all the items in the list.
      */
@@ -96,7 +89,6 @@ public class ListaEnlazada <Type>{
         }
 
     }
-
     /***
      * This method modifies the content of a certain position in the list.
      * @param pos Integer
@@ -132,7 +124,6 @@ public class ListaEnlazada <Type>{
         }
 
     }
-
     /***
      * This method deletes an item from the list.
      * @param pos Integer
@@ -172,7 +163,6 @@ public class ListaEnlazada <Type>{
         size--;
 
     }
-
     /***
      * This method deletes all the elements with a common content from the list.
      * @param data Type
@@ -200,7 +190,6 @@ public class ListaEnlazada <Type>{
         }
         return null;
     }
-
     /***
      * This method returns the content of a certain position in the list.
      * @param pos Integer
@@ -216,6 +205,7 @@ public class ListaEnlazada <Type>{
         return (Type) temp.getData();
     }
 
+
     /***
      * This method returns the content of the first node of the list.
      * @return Type
@@ -223,7 +213,6 @@ public class ListaEnlazada <Type>{
     public Type getCabeza() {
         return (Type) first.getData();
     }
-
     /***
      * This method returns the content of the last node of the list.
      * @return Type
@@ -231,7 +220,6 @@ public class ListaEnlazada <Type>{
     public Type getCola() {
         return (Type) last.getData();
     }
-
     /***
      * This method returns the size of the list.
      * @return Integer
@@ -239,7 +227,6 @@ public class ListaEnlazada <Type>{
     public int getSize() {
         return size;
     }
-
     /***
      * This method adds a new node at the head of the list.
      * @param data Type
@@ -255,7 +242,6 @@ public class ListaEnlazada <Type>{
         }
 
     }
-
     /***
      * This method removes the first node of the list.
      * @return Nodo

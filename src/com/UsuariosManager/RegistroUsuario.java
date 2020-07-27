@@ -1,10 +1,7 @@
 package com.UsuariosManager;
-
 import com.EmpresasManager.Empresa;
 import com.JsonManager.CambiarValorJson;
 import com.RecetasManager.Receta;
-
-
 import com.sample2.RUNMAIN2;
 import org.json.simple.JSONArray;
 import javax.ws.rs.*;
@@ -42,7 +39,6 @@ public class RegistroUsuario{
 
         }
     }
-
     /***
      * This method creates a generic user to be showed.
      * @param nombre String
@@ -66,7 +62,6 @@ public class RegistroUsuario{
         }
         return temp;
     }
-
     /***
      * This method obtains the NewsFeed of an user in a certain location in the server.
      * @param nombre String
@@ -79,7 +74,6 @@ public class RegistroUsuario{
         return usuarios.getNewsFeed(nombre);
 
     }
-
     /***
      * This method adds a new recipe to the user's AVL tree.
      * @param receta Receta
@@ -98,7 +92,6 @@ public class RegistroUsuario{
         return null;
 
     }
-
     /***
      * Add an user to the BST tree.
      * @param usuario Usuario
@@ -118,7 +111,6 @@ public class RegistroUsuario{
         return null;
 
     }
-
     /***
      * This method starts the verification and sign-up process of a new user.
      * @param usuario Usuario
@@ -131,7 +123,6 @@ public class RegistroUsuario{
 
         return usuarios.verificacion(usuario);
     }
-
     /***
      * This method adds a given user as a follower of another user.
      * @param usuario Usuario
@@ -159,7 +150,6 @@ public class RegistroUsuario{
         }
 
     }
-
     /***
      * This method does a requested change of password for a given user.
      * @param seguridad Seguridad
@@ -187,7 +177,6 @@ public class RegistroUsuario{
 
 
     }
-
     /***
      * This method sets the 'chef' status to a certain user.
      * @param usuario String
@@ -211,16 +200,16 @@ public class RegistroUsuario{
         return usuarios.agregarEmpresa(empresa,name);
 
     }
-
     /***
      * This method updates all the stored data in the Json files.
      */
+    @Path("cargarDatos")
+    @POST
     public void cargarDatos(){
         usuarios.cargarUsuarios();
         usuarios.cargarRecetas();
         usuarios.cargarEmpresas();
     }
-
     /***
      * This method adds a gven user as a follower of a certain company.
      * @param usuario Usuario
@@ -249,7 +238,6 @@ public class RegistroUsuario{
         }
 
     }
-
     /***
      * This method opens the user management interface.
      * @return String
@@ -260,9 +248,8 @@ public class RegistroUsuario{
     public String openI(){
         RUNMAIN2 runmain2 = new RUNMAIN2();
         runmain2.iniciar();
-        return "Abriendo interfaz de usuario . . .";
+        return "ABRIENDO INTERFAZ....";
     }
-
     /***
      * This method obtains a JSON array with all of the showed elements in the personal MyMenu of a certain user.
      * @param name String

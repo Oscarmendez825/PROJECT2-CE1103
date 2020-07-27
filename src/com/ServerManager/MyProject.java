@@ -1,11 +1,10 @@
 package com.ServerManager;
 
+
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
-
-@ApplicationPath("/resource")
 
 /***
  * This class is a trial of the data access in the server.
@@ -15,6 +14,7 @@ import java.util.Set;
  * @version 1.1
  * @since 2020
  */
+@ApplicationPath("/resource")
 public class MyProject extends Application {
 
 /*    @Override

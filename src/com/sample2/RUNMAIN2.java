@@ -1,5 +1,4 @@
 package com.sample2;
-
 /***
  * Executer class of the user management interface.
  * @author Oscar Méndez
@@ -9,7 +8,6 @@ package com.sample2;
  * @since 2020
  */
 public class RUNMAIN2 {
-
     /***
      * This method initializes the user manager interface.
      */

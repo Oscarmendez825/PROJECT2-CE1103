@@ -1,7 +1,7 @@
 package com.SPLAY;
 
-import com.EmpresasManager.Empresa;
 
+import com.EmpresasManager.Empresa;
 /***
  * Splay tree class; stores the info of each created company.
  * @author Oscar Méndez
@@ -12,7 +12,6 @@ import com.EmpresasManager.Empresa;
  */
 public class SplayTree {
     private BinaryNode root;
-
     /***
      * Constructor method of the SplayTree class.\
      */
@@ -33,7 +32,7 @@ public class SplayTree {
         }
         splay(data);
         if ((c = data.getNombre().compareTo(root.getData().getNombre())) == 0) {
-            //	    throw new DuplicateItemException(x.toString());
+
             return;
         }
         n = new BinaryNode(data);
@@ -57,10 +56,10 @@ public class SplayTree {
         BinaryNode x;
         splay(data);
         if (data.getNombre().compareTo(root.getData().getNombre()) != 0) {
-            //            throw new ItemNotFoundException(x.toString());
+
             return;
         }
-        // Now delete the root
+
         if (root.getLeft() == null) {
             root = root.getRight();
         } else {
@@ -110,7 +109,6 @@ public class SplayTree {
         }
         return root.getData();
     }
-
     /***
      * This method verifies if an item is in the tree.
      * @param data String
@@ -214,7 +212,6 @@ public class SplayTree {
         t.setRight(header.getLeft());
         root = t;
     }
-
     /***
      * This method applies the 'splay' characteristic sorting operation on a node.
      * @param data String

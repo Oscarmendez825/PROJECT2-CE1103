@@ -30,7 +30,6 @@ public class AVLTree {
 
         }
     }
-
     /***
      * Facade method for the true 'contains' method
      * @param item String
@@ -40,7 +39,6 @@ public class AVLTree {
         return contains(root, item);
 
     }
-
     /***
      * this method verifies if a certain item is in the tree.
      * @param root NodoAVL
@@ -58,7 +56,6 @@ public class AVLTree {
             return true;
         }
     }
-
     /***
      * Facade method for the true 'search' method.
      * @param item String
@@ -68,9 +65,8 @@ public class AVLTree {
 
         return search(root,item);
     }
-
     /***
-     * this method finds a certain item in the tree, and returns it.
+     * this recursive method finds a certain item in the tree, and returns it.
      * @param root NodoAVL
      * @param item String
      * @return Receta
@@ -86,7 +82,6 @@ public class AVLTree {
             return root.getItem();
         }
     }
-
     /***
      * Facade method for the true 'delete' method.
      * @param item Receta
@@ -95,9 +90,8 @@ public class AVLTree {
 
         delete(root, item);
     }
-
     /***
-     * This method deletes a recipe from the actual tree.
+     * This recursive method deletes a recipe from the actual tree.
      * @param root NodoAVL
      * @param item Receta
      */
@@ -169,7 +163,6 @@ public class AVLTree {
             }
         }
     }
-
     /***
      * this method finds and returns the actual smallest item of the tree.
      * @param root NodoAVL
@@ -182,7 +175,6 @@ public class AVLTree {
         }
         return node;
     }
-
     /***
      * Facade method of the true 'insert' method.
      * @param item Receta
@@ -195,9 +187,8 @@ public class AVLTree {
             insert(root, item);
         }
     }
-
     /***
-     * This method inserts a new recipe in the tree.
+     * This recursive method inserts a new recipe in the tree.
      * @param root NodoAVL
      * @param item Receta
      */
@@ -228,7 +219,6 @@ public class AVLTree {
             }
         }
     }
-
     /***
      * This method does rotations and rebalances the tree.
      * @param root NodoAVL
@@ -263,7 +253,6 @@ public class AVLTree {
         }
 
     }
-
     /***
      * This method returns the height difference between both left and right branches of the tree.
      * @param root NodoAVL
@@ -273,20 +262,22 @@ public class AVLTree {
         if(root==null) return 0;
         return root.getLeftHeight()-root.getRightHeight();
     }
-
     /***
      * This methos does a node rotation to the left.
      * @param root NodoAVL
      */
     public void LLRotation(NodoAVL root) {
+        // LL Rotation
         NodoAVL leftChild = root.getLeftChild();
         NodoAVL grandParent = root.getParent();
         boolean rootIsLeft = root.getIsLeftChild();
+        // root 와 leftChild disconnect
         leftChild.setParent(null);
         root.setLeftChild(null);
         root.setLeftHeight(0);
         root.setIsLeftChild(false);
         if(leftChild.getRightHeight()!=0) {
+            //root 와 leftChild의 rightChild connect
             root.setLeftChild(leftChild.getRightChild());
             root.setLeftHeight(leftChild.getRightHeight());
             leftChild.getRightChild().setParent(root);
@@ -313,19 +304,23 @@ public class AVLTree {
         }
     }
 
+
     /***
      * This method does a rotation to the right.
      * @param root NodoAVL
      */
     public void RRRotation(NodoAVL root) {
+        // LL Rotation
         NodoAVL rightChild = root.getRightChild();
         NodoAVL grandParent = root.getParent();
         boolean rootIsLeft = root.getIsLeftChild();
+        // root 와 rightChild disconnect
         rightChild.setParent(null);
         root.setRightChild(null);
         root.setRightHeight(0);
         root.setIsLeftChild(true);
         if(rightChild.getLeftHeight()!=0) {
+            //root 와 rightChild의 leftChild connect
             root.setRightChild(rightChild.getLeftChild());
             root.setRightHeight(rightChild.getLeftHeight());
             rightChild.getLeftChild().setParent(root);
@@ -350,7 +345,6 @@ public class AVLTree {
             rightChild.setIsLeftChild(false);
         }
     }
-
     /***
      * This method does a LR rotation on a given node.
      * @param root NodoAVL
@@ -359,7 +353,6 @@ public class AVLTree {
         RRRotation(root.getLeftChild());
         LLRotation(root);
     }
-
     /***
      * This method does a RL rotation on a given node.
      * @param root NodoAVL

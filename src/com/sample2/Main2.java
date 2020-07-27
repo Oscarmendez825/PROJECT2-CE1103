@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 /***
  * Class of primary settings for the user manager interface.
  * @author Oscar Méndez
@@ -15,7 +14,6 @@ import javafx.stage.Stage;
  * @since 2020
  */
 public class Main2 extends Application implements Runnable {
-
     /***
      * This method sets the primarysettings of the user management interface.
      * @param primaryStage String
@@ -36,7 +34,6 @@ public class Main2 extends Application implements Runnable {
     public static void main(String[] args) {
         launch(args);
     }
-
     /***
      * 'Main2' launcher.
      */

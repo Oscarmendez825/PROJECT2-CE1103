@@ -1,7 +1,6 @@
 package com.SPLAY;
 
 import com.EmpresasManager.Empresa;
-
 /***
  * Node class for the Splay tree.
  * @author Oscar Méndez
@@ -12,10 +11,9 @@ import com.EmpresasManager.Empresa;
  */
 class BinaryNode
 {
-    private Empresa data;          // The data in the node
-    private BinaryNode left;         // Left child
-    private BinaryNode right;        // Right child
-
+    private Empresa data;
+    private BinaryNode left;
+    private BinaryNode right;
     /***
      * Constructor method of the BinaryNode class.
      * @param data Empresa
@@ -24,7 +22,6 @@ class BinaryNode
         this.data = data;
         left = right = null;
     }
-
     /***
      * This method returns the 'data' variable.
      * @return Empresa
@@ -32,7 +29,6 @@ class BinaryNode
     public Empresa getData() {
         return data;
     }
-
     /***
      * This method changes the value of the 'data' variable.
      * @param data Empresa
@@ -40,7 +36,6 @@ class BinaryNode
     public void setData(Empresa data) {
         this.data = data;
     }
-
     /***
      * This method returns the 'left' variable.
      * @return BinaryNode
@@ -48,7 +43,6 @@ class BinaryNode
     public BinaryNode getLeft() {
         return left;
     }
-
     /***
      * This method changes the value of the 'left' variable.
      * @param left BinaryNode
@@ -57,7 +51,6 @@ class BinaryNode
         
         this.left = left;
     }
-
     /***
      * This method returns the 'right' variable.
      * @return BinaryNode
@@ -65,7 +58,6 @@ class BinaryNode
     public BinaryNode getRight() {
         return right;
     }
-
     /***
      * This method changes the value of the 'right' variable.
      * @param right BinaryNode

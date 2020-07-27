@@ -1,7 +1,6 @@
 package com.UsuariosManager;
 
 import com.ListaEnlazada.ListaEnlazada;
-
 /***
  * This class is the template for the user's MyMenu, section where the user can show to other people the
  * own recipes and other interesting recipes.
@@ -16,14 +15,13 @@ public class MyMenu {
     private String[] referencia = new String[2];
 
     ListaEnlazada<String[]> lista = new ListaEnlazada<String[]>();
-
     /***
      * Constructor method ofb the 'MyMenu' class.
      */
     public MyMenu (){
 
-    }
 
+    }
     /***
      * This method sets and adds a recipe's reference into the list of MyMenu.
      * @param autor String
@@ -35,7 +33,6 @@ public class MyMenu {
         referencia[1] = nombre;
         lista.add(referencia);
     }
-
     /***
      * This method returns the 'lista' variable.
      * @return ListaEnlazada
@@ -43,7 +40,6 @@ public class MyMenu {
     public ListaEnlazada<String[]> getLista() {
         return lista;
     }
-
     /***
      * This method sets a different list for MyMenu.
      * @param lista ListaEnlazada

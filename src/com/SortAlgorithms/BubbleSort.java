@@ -1,5 +1,4 @@
 package com.SortAlgorithms;
-
 /***
  * Bubble sorting class.
  * @author Oscar Méndez
@@ -9,7 +8,6 @@ package com.SortAlgorithms;
  * @since 2020
  */
 public class BubbleSort {
-
     /***
      * Main method for the BubbleSort Class
      * @param arr Array

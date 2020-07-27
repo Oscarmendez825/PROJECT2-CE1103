@@ -78,7 +78,6 @@ public class CambiarValorJson {
         }
 
     }
-
     /***
      * This method adds a follower to a certain user.
      * @param usuario String
@@ -153,7 +152,6 @@ public class CambiarValorJson {
         }
 
     }
-
     /***
      * This method adds a certain user as a member of a company.
      * @param usuario String
@@ -219,7 +217,6 @@ public class CambiarValorJson {
         }
 
     }
-
     /***
      * This method adds a follower to a certain company.
      * @param empresa String

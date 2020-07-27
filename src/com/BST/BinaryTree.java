@@ -25,7 +25,6 @@ public class BinaryTree {
 			return false;
 		}
 	}
-
 	/***
 	 * Facade method of the true 'insert' method.
 	 * @param data Usuario
@@ -49,6 +48,7 @@ public class BinaryTree {
 		{
 			return new Node(data);
 		}
+
 		else if (data.getNombre().compareTo(root.getData().getNombre()) < 0){
 			root.setLeft(insert(root.getLeft(), data));
 		}
@@ -58,13 +58,11 @@ public class BinaryTree {
 		}
 		else
 		{
-			// We are disallowing insertion of duplicate values for
-			// this assignment.
+
 		}
 
 		return root;
 	}
-
 	/***
 	 * Facade method of the true 'delete' method.
 	 * @param data Usuario
@@ -76,17 +74,19 @@ public class BinaryTree {
 	}
 
 	/***
-	 * This method finds and deletes a certain item of the tree
+	 * This recursive method finds and deletes a certain item of the tree
 	 * @param root Node
 	 * @param data Usuario
 	 * @return Node
 	 */
 	private Node delete(Node root, Usuario data)
 	{
+
 		if (root == null)
 		{
 			return null;
 		}
+
 		else if (data.getNombre().compareTo(root.getData().getNombre()) < 0)
 		{
 			root.setLeft(delete(root.getLeft(), data));
@@ -97,18 +97,22 @@ public class BinaryTree {
 		}
 		else
 		{
+
 			if (root.getLeft() == null && root.getRight() == null)
 			{
 				return null;
 			}
+
 			else if (root.getRight() == null)
 			{
 				return root.getLeft();
 			}
+
 			else if (root.getLeft() == null)
 			{
 				return root.getRight();
 			}
+
 			else
 			{
 				root.setData(findMax(root.getLeft()));
@@ -146,17 +150,19 @@ public class BinaryTree {
 	}
 
 	/***
-	 * This method verifies if a certain user is in the tree.
+	 * This recursive method verifies if a certain user is in the tree.
 	 * @param root Node
 	 * @param data Usuario
 	 * @return Boolean
 	 */
 	private boolean contains(Node root, Usuario data)
 	{
+
 		if (root == null)
 		{
 			return false;
 		}
+
 		else if (data.getEmail().compareTo(root.getData().getEmail()) < 0)
 		{
 			return contains(root.getLeft(), data);
@@ -165,12 +171,12 @@ public class BinaryTree {
 		{
 			return contains(root.getRight(), data);
 		}
+
 		else
 		{
 			return true;
 		}
 	}
-
 	/***
 	 * Facade method of the true 'contains' method.
 	 * @param data String
@@ -181,12 +187,21 @@ public class BinaryTree {
 
         return contains(root, data);
     }
+
+	/***
+	 * This recursive method verifies if a certain user is in the tree.
+	 * @param root Node
+	 * @param data Usuario
+	 * @return Boolean
+	 */
     private boolean contains(Node root, String data)
     {
+
         if (root == null)
         {
             return false;
         }
+
         else if (data.compareTo(root.getData().getNombre()) < 0)
         {
             return contains(root.getLeft(), data);
@@ -195,12 +210,12 @@ public class BinaryTree {
         {
             return contains(root.getRight(), data);
         }
+
         else
         {
             return true;
         }
     }
-
 	/***
 	 * Facade method of the true 'getbyEmail' method.
 	 * @param email String
@@ -210,9 +225,8 @@ public class BinaryTree {
 		return getbyEmail(root,email);
 
 	}
-
 	/***
-	 * This method finds an user by its 'email' atribute.
+	 * This recursive method finds an user by its 'email' atribute.
 	 * @param root Node
 	 * @param email String
 	 * @return Usuario
@@ -222,6 +236,7 @@ public class BinaryTree {
 		{
 			return null;
 		}
+
 		else if (email.compareTo(root.getData().getEmail()) < 0)
 		{
 			return getbyName(root.getLeft(), email);
@@ -230,13 +245,13 @@ public class BinaryTree {
 		{
 			return getbyName(root.getRight(), email);
 		}
+
 		else
 		{
 			return root.getData();
 		}
 
 	}
-
 	/***
 	 * Facade method of the true 'getbyNombre' method.
 	 * @param nombre String
@@ -248,7 +263,7 @@ public class BinaryTree {
 	}
 
 	/***
-	 * This method finds an user by its 'nombre' atribute.
+	 * This recursive method finds an user by its 'nombre' atribute.
 	 * @param root Node
 	 * @param nombre String
 	 * @returnUsuario
@@ -258,6 +273,7 @@ public class BinaryTree {
 		{
 			return null;
 		}
+
 		else if (nombre.compareTo(root.getData().getNombre()) < 0)
 		{
 			return getbyName(root.getLeft(), nombre);
@@ -266,13 +282,13 @@ public class BinaryTree {
 		{
 			return getbyName(root.getRight(), nombre);
 		}
+
 		else
 		{
 			return root.getData();
 		}
 
 	}
-
 	/***
 	 * Facade method of the true 'inorder' method.
 	 */
@@ -284,7 +300,7 @@ public class BinaryTree {
 	}
 
 	/***
-	 * This method prints the whole users in an in-order pattern.
+	 * This recursive method prints the whole users in an in-order pattern.
 	 * @param root Node
 	 */
 	private void inorder(Node root)
@@ -330,7 +346,6 @@ public class BinaryTree {
 		postorder(root);
 		System.out.println();
 	}
-
 	/***
 	 * This method prints the whole users in an post-order pattern.
 	 * @param root Node
@@ -344,5 +359,6 @@ public class BinaryTree {
 		postorder(root.getRight());
 		System.out.print(" " + root.getData());
 	}
+
 
 }

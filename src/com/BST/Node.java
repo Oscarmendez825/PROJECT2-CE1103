@@ -19,7 +19,6 @@ class Node {
 
         this.data = data;
     }
-
     /***
      * This method returns the 'data' variable.
      * @return Usuario
@@ -27,7 +26,6 @@ class Node {
     public Usuario getData() {
         return data;
     }
-
     /***
      * This method changes the value of the 'data' variable.
      * @param data Usuario
@@ -35,7 +33,6 @@ class Node {
     public void setData(Usuario data) {
         this.data = data;
     }
-
     /***
      * This method returns the 'left' variable.
      * @return Node
@@ -43,7 +40,6 @@ class Node {
     public Node getLeft() {
         return left;
     }
-
     /***
      * This method changes the value of the 'left' variable.
      * @param left Node
@@ -51,7 +47,6 @@ class Node {
     public void setLeft(Node left) {
         this.left = left;
     }
-
     /***
      * This method returns the 'right' variable.
      * @return Node
@@ -59,7 +54,6 @@ class Node {
     public Node getRight() {
         return right;
     }
-
     /***
      * This method changes the value of the 'right' variable.
      * @param right Node

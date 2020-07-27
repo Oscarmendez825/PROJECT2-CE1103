@@ -19,7 +19,6 @@ import java.io.IOException;
  * @since 2020
  */
 public class ReadJsonFile {
-
     /***
      * This method reads the content of a certain Json file.
      */

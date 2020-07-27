@@ -4,13 +4,12 @@
     <root id="root">
       <element id="javaee-facet-resources" facet="Project2CE1103/web/Web" />
       <element id="directory" name="WEB-INF">
-        <element id="directory" name="classes" />
+        <element id="directory" name="classes">
+          <element id="module-output" name="Project2CE1103" />
+        </element>
         <element id="directory" name="lib">
           <element id="file-copy" path="$USER_HOME$/Downloads/jar_files/gson-2.8.2.jar" />
           <element id="file-copy" path="$USER_HOME$/Downloads/json-simple-1.1.1.jar/json-simple-1.1.1.jar" />
-          <element id="library" level="project" name="MigLayout" />
-          <element id="file-copy" path="$PROJECT_DIR$/../../../../../../Program Files/varas de ce/gson-2.8.2.jar" />
-          <element id="file-copy" path="$PROJECT_DIR$/../../../../../../Program Files/varas de ce/json-simple-1.1.1.jar" />
         </element>
       </element>
     </root>
