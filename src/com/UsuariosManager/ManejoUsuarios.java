@@ -432,24 +432,25 @@ public class ManejoUsuarios {
     public JSONArray getMyMenu(String name) {
         JSONArray genA = new JSONArray();
         ListaEnlazada<String[]> temp = usuarios.getbyName(name).getMyMenu().getLista();
+        System.out.println("get"+temp.getSize());
         for(int i = 0; i < temp.getSize();i++){
             JSONObject jsonObject = new JSONObject();
             Receta receta = usuarios.getbyName(temp.get(i)[0]).getRecetas().search(temp.get(i)[1]);
             JSONArray ingredientes = new JSONArray();
             JSONArray dieta = new JSONArray();
             JSONArray pasos = new JSONArray();
-                for(int j=0; i < receta.getIngredientes().length;i++){
-                    ingredientes.add(receta.getIngredientes()[i]);
+                for(int j=0; j < receta.getIngredientes().length;j++){
+                    ingredientes.add(receta.getIngredientes()[j]);
 
 
                 }
-                for(int j=0; i < receta.getDieta().length;i++){
-                    dieta.add(receta.getDieta()[i]);
+                for(int j=0; j < receta.getDieta().length;j++){
+                    dieta.add(receta.getDieta()[j]);
 
 
                 }
-                for(int j=0; i < receta.getPasos().length;i++){
-                    pasos.add(receta.getPasos()[i]);
+                for(int j=0; j < receta.getPasos().length;j++){
+                    pasos.add(receta.getPasos()[j]);
 
 
                 }
